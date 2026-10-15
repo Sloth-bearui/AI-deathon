@@ -1,0 +1,212 @@
+[
+  {
+    "id": "inv-001",
+    "postId": "post-001",
+    "claim": "RBI has announced that all ₹500 notes will be recalled from circulation by December 2026.",
+    "status": "contradicted",
+    "dateStarted": "2026-10-14T09:00:00Z",
+    "dateCompleted": "2026-10-14T09:45:00Z",
+    "steps": [
+      {
+        "id": "step-001",
+        "name": "Source trace",
+        "description": "Search for the original source of this claim",
+        "status": "complete",
+        "finding": "No original source found. The message appears as a chain-forwarded text with no attribution to any official or media outlet.",
+        "findingType": "contradicting",
+        "duration": 8
+      },
+      {
+        "id": "step-002",
+        "name": "Official source check",
+        "description": "Check RBI official communications",
+        "status": "complete",
+        "finding": "RBI's official website, press releases, and verified social media accounts contain no announcement about recalling ₹500 notes.",
+        "findingType": "contradicting",
+        "sources": ["https://rbi.org.in", "https://twitter.com/RBI"],
+        "duration": 10
+      },
+      {
+        "id": "step-003",
+        "name": "Fact-check database search",
+        "description": "Search established fact-checking databases",
+        "status": "complete",
+        "finding": "Similar claims have been debunked multiple times since 2017. This is a recurring pattern of currency panic messaging.",
+        "findingType": "contradicting",
+        "sources": ["https://www.altnews.in", "https://www.boomlive.in"],
+        "duration": 6
+      },
+      {
+        "id": "step-004",
+        "name": "News media search",
+        "description": "Search mainstream news outlets for coverage",
+        "status": "complete",
+        "finding": "No mainstream news outlet has reported any RBI announcement about ₹500 note recall. Multiple outlets have instead published articles debunking similar viral messages.",
+        "findingType": "contradicting",
+        "duration": 7
+      },
+      {
+        "id": "step-005",
+        "name": "Archive check",
+        "description": "Check web archives for earlier versions of this claim",
+        "status": "complete",
+        "finding": "Web archive search reveals nearly identical messages circulated in 2017, 2019, 2021, and 2023, each time with updated dates. The pattern is consistent with recycled misinformation.",
+        "findingType": "contradicting",
+        "duration": 9
+      }
+    ],
+    "summary": "This claim is contradicted by all available evidence. RBI has made no announcement about recalling ₹500 notes. The message follows a well-documented pattern of recycled currency panic hoaxes that have circulated since 2017.",
+    "limitations": [
+      "This investigation used publicly available information only.",
+      "We cannot guarantee that future RBI decisions won't include denomination changes.",
+      "The original sender of the message could not be identified."
+    ],
+    "recommendedSteps": [
+      "Always check RBI's official website (rbi.org.in) for currency announcements.",
+      "Be sceptical of messages marked as 'forwarded many times' on WhatsApp.",
+      "Look for the message source — official announcements always have attribution.",
+      "Check established fact-checking websites like AltNews or BOOM."
+    ],
+    "disclaimer": "This investigation used simulated search steps for demonstration purposes. In a real investigation, each source would be directly verified."
+  },
+  {
+    "id": "inv-002",
+    "postId": "post-003",
+    "claim": "5G towers cause health problems including cancer in nearby residents.",
+    "status": "contradicted",
+    "dateStarted": "2026-10-12T12:00:00Z",
+    "dateCompleted": "2026-10-12T13:30:00Z",
+    "steps": [
+      {
+        "id": "step-006",
+        "name": "Source trace",
+        "description": "Identify the origin of the video and claims",
+        "status": "complete",
+        "finding": "The video appears to be a compilation of unrelated clips. The 'Andheri West' claim has no verifiable source or hospital name.",
+        "findingType": "contradicting",
+        "duration": 12
+      },
+      {
+        "id": "step-007",
+        "name": "Scientific literature review",
+        "description": "Check published scientific research on 5G health effects",
+        "status": "complete",
+        "finding": "WHO, ICNIRP, and IEEE all state that 5G frequencies (below 6 GHz and mmWave) do not have established adverse health effects at permitted power levels.",
+        "findingType": "contradicting",
+        "sources": ["https://www.who.int", "https://www.icnirp.org"],
+        "duration": 15
+      },
+      {
+        "id": "step-008",
+        "name": "Health data verification",
+        "description": "Check for reported health data from the claimed area",
+        "status": "complete",
+        "finding": "No publicly available health data from ICMR, BMC, or any hospital in Andheri West supports a 300% increase in cancer cases.",
+        "findingType": "contradicting",
+        "duration": 10
+      },
+      {
+        "id": "step-009",
+        "name": "Image and video analysis",
+        "description": "Check video metadata and image authenticity",
+        "status": "complete",
+        "finding": "Video contains clips from at least 3 different locations. One clip appears to be from a 2020 anti-5G protest in the UK, not from India.",
+        "findingType": "contradicting",
+        "duration": 14
+      },
+      {
+        "id": "step-010",
+        "name": "Fact-check database search",
+        "description": "Search established fact-checkers",
+        "status": "complete",
+        "finding": "Multiple fact-checkers including AFP, Reuters, and BOOM have debunked similar 5G health claims.",
+        "findingType": "contradicting",
+        "duration": 5
+      }
+    ],
+    "summary": "This claim is contradicted by extensive scientific evidence. WHO and other health bodies confirm that 5G frequencies do not cause the claimed health effects. The specific statistical claims in the video have no verifiable source.",
+    "limitations": [
+      "Individual health cases cannot be assessed through open-source investigation.",
+      "Video analysis was based on visual comparison, not forensic tools.",
+      "Localised environmental factors were not assessed."
+    ],
+    "recommendedSteps": [
+      "Check WHO's dedicated 5G and health page for the latest scientific consensus.",
+      "Be sceptical of videos that say 'watch before it gets deleted' — this is a common manipulation tactic.",
+      "Verify statistical claims by checking the named source directly.",
+      "Look for the same video on fact-checking websites."
+    ],
+    "disclaimer": "This investigation used simulated search steps for demonstration purposes. In a real investigation, each source would be directly verified."
+  },
+  {
+    "id": "inv-003",
+    "postId": "post-004",
+    "claim": "The central government is giving free laptops to students who pay a ₹299 registration fee.",
+    "status": "contradicted",
+    "dateStarted": "2026-10-11T17:00:00Z",
+    "dateCompleted": "2026-10-11T17:40:00Z",
+    "steps": [
+      {
+        "id": "step-011",
+        "name": "URL and domain check",
+        "description": "Verify the website domain",
+        "status": "complete",
+        "finding": "The domain 'gov-laptop-free.in' is not a government domain. Official government websites use .gov.in or .nic.in. This domain was registered just 3 days before the message started circulating.",
+        "findingType": "contradicting",
+        "duration": 5
+      },
+      {
+        "id": "step-012",
+        "name": "Government scheme verification",
+        "description": "Check official government scheme listings",
+        "status": "complete",
+        "finding": "No such laptop distribution scheme exists on MyScheme.gov.in, the official government schemes portal. No ministry has announced such a program.",
+        "findingType": "contradicting",
+        "sources": ["https://www.myscheme.gov.in"],
+        "duration": 8
+      },
+      {
+        "id": "step-013",
+        "name": "Payment red flag analysis",
+        "description": "Analyse the payment request",
+        "status": "complete",
+        "finding": "Government schemes never require registration fees paid through unofficial websites. The ₹299 fee is a classic phishing pattern to collect payment details.",
+        "findingType": "contradicting",
+        "duration": 4
+      },
+      {
+        "id": "step-014",
+        "name": "Similar scam pattern check",
+        "description": "Search for similar scam patterns",
+        "status": "complete",
+        "finding": "This follows a well-known 'free government gift' scam pattern. Similar messages about free phones, tablets, and laptops have circulated since 2019.",
+        "findingType": "contradicting",
+        "duration": 6
+      },
+      {
+        "id": "step-015",
+        "name": "PIB fact-check search",
+        "description": "Check Press Information Bureau fact-check",
+        "status": "complete",
+        "finding": "PIB Fact Check has flagged similar messages as fake in the past and confirmed no such scheme exists.",
+        "findingType": "contradicting",
+        "sources": ["https://pibfactcheck.in"],
+        "duration": 5
+      }
+    ],
+    "summary": "This is a phishing scam. No government laptop distribution scheme exists. The website uses a fake domain, requests payment (a red flag), and follows known scam patterns. Never share personal information or make payments on unofficial websites.",
+    "limitations": [
+      "The website content was not accessed directly to avoid potential malware.",
+      "We cannot confirm whether the site is still active.",
+      "State-level laptop schemes may exist separately but use official .gov.in domains."
+    ],
+    "recommendedSteps": [
+      "Never pay money on websites claiming to offer free government schemes.",
+      "Check if a website uses .gov.in or .nic.in domain for government schemes.",
+      "Verify any government scheme on MyScheme.gov.in.",
+      "Report suspicious links to the Cyber Crime portal (cybercrime.gov.in).",
+      "If you already paid, contact your bank immediately to block the transaction."
+    ],
+    "disclaimer": "This investigation used simulated search steps for demonstration purposes. In a real investigation, each source would be directly verified."
+  }
+]

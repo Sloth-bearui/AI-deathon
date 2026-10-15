@@ -1,0 +1,92 @@
+[
+  {
+    "id": "lab-001",
+    "title": "Spot Phishing Messages",
+    "description": "Learn to identify fake messages designed to steal your personal information. You will inspect sender details, URLs, and language patterns used by scammers.",
+    "category": "scam-awareness",
+    "estimatedMinutes": 15,
+    "icon": "mail-warning",
+    "lessons": [
+      { "id": "l-001", "title": "What is phishing?", "type": "intro", "content": "Phishing is when someone pretends to be a trusted organisation to trick you into sharing personal information like passwords, bank details, or OTPs." },
+      { "id": "l-002", "title": "Inspect the sender", "type": "interactive", "content": "Look at these messages and tap on the red flags you can spot in the sender's details." },
+      { "id": "l-003", "title": "Check the URL", "type": "interactive", "content": "Compare the real and fake URLs. Can you tell which one leads to the actual website?" },
+      { "id": "l-004", "title": "What did you learn?", "type": "reflection", "content": "Think about a message you received recently. Were there any of these warning signs?" },
+      { "id": "l-005", "title": "Your safety checklist", "type": "checklist", "content": "Keep this checklist handy to check any suspicious message you receive." }
+    ]
+  },
+  {
+    "id": "lab-002",
+    "title": "UPI and Digital Banking Safety",
+    "description": "Understand how UPI collect requests, QR code scams, and fake banking apps work. Learn to protect your money when using digital payments.",
+    "category": "digital-banking",
+    "estimatedMinutes": 20,
+    "icon": "credit-card",
+    "lessons": [
+      { "id": "l-006", "title": "How UPI works", "type": "intro", "content": "UPI (Unified Payments Interface) lets you send and receive money instantly. But scammers have found ways to trick people into sending money when they think they are receiving it." },
+      { "id": "l-007", "title": "The collect request trick", "type": "interactive", "content": "Someone sends you a collect request saying they are 'sending' you money. What should you do?" },
+      { "id": "l-008", "title": "QR code dangers", "type": "interactive", "content": "Scanning a QR code to 'receive' money actually sends money to the scammer. Let us see how this works." },
+      { "id": "l-009", "title": "Reflection", "type": "reflection", "content": "Have you ever received a collect request from someone you did not know?" },
+      { "id": "l-010", "title": "Banking safety checklist", "type": "checklist", "content": "Steps to keep your UPI and bank accounts safe." }
+    ]
+  },
+  {
+    "id": "lab-003",
+    "title": "Spot Deepfakes and AI Images",
+    "description": "Learn to identify images and videos that have been created or manipulated using AI. Look for visual artifacts, inconsistencies, and context clues.",
+    "category": "ai-media",
+    "estimatedMinutes": 18,
+    "icon": "scan-eye",
+    "lessons": [
+      { "id": "l-011", "title": "What are deepfakes?", "type": "intro", "content": "Deepfakes are images, videos, or audio created by AI to look and sound like real people. They can be used to spread false information." },
+      { "id": "l-012", "title": "Find the artifacts", "type": "interactive", "content": "Zoom into these images and tap on areas that look unnatural — extra fingers, warped text, impossible reflections." },
+      { "id": "l-013", "title": "Compare two images", "type": "interactive", "content": "One of these images is AI-generated. Can you tell which one? Look for subtle differences." },
+      { "id": "l-014", "title": "Reflection", "type": "reflection", "content": "How confident do you feel about spotting AI-generated images now?" },
+      { "id": "l-015", "title": "Deepfake detection checklist", "type": "checklist", "content": "Steps to verify if an image or video might be AI-generated." }
+    ]
+  },
+  {
+    "id": "lab-004",
+    "title": "Smartphone Security Basics",
+    "description": "Learn essential smartphone security practices: app permissions, software updates, strong passwords, and how to spot suspicious apps.",
+    "category": "device-security",
+    "estimatedMinutes": 12,
+    "icon": "smartphone",
+    "lessons": [
+      { "id": "l-016", "title": "Why phone security matters", "type": "intro", "content": "Your smartphone contains your personal data, bank accounts, and communications. Keeping it secure protects all aspects of your digital life." },
+      { "id": "l-017", "title": "Check app permissions", "type": "interactive", "content": "Review these app permission requests. Which ones seem excessive for the type of app?" },
+      { "id": "l-018", "title": "Spot the fake app", "type": "interactive", "content": "Look at these app store listings. Can you tell which app might be malicious?" },
+      { "id": "l-019", "title": "Reflection", "type": "reflection", "content": "Check your phone now — are there any apps you no longer use that still have access to your camera or contacts?" },
+      { "id": "l-020", "title": "Phone security checklist", "type": "checklist", "content": "Essential steps to keep your smartphone secure." }
+    ]
+  },
+  {
+    "id": "lab-005",
+    "title": "Understanding AI and How It Works",
+    "description": "Learn what AI can and cannot do, how AI-generated content is made, and how to use AI tools responsibly without being misled.",
+    "category": "ai-literacy",
+    "estimatedMinutes": 15,
+    "icon": "brain-circuit",
+    "lessons": [
+      { "id": "l-021", "title": "What is AI?", "type": "intro", "content": "AI (Artificial Intelligence) refers to computer programs that can learn from data and perform tasks that normally require human thinking. Not all AI claims are accurate." },
+      { "id": "l-022", "title": "AI can be wrong", "type": "interactive", "content": "See examples where AI gave confident but incorrect answers. Learn why AI 'hallucinations' happen." },
+      { "id": "l-023", "title": "AI in your daily life", "type": "interactive", "content": "Identify which of these everyday services use AI — and what that means for you." },
+      { "id": "l-024", "title": "Reflection", "type": "reflection", "content": "How do you decide whether to trust information given by an AI tool?" },
+      { "id": "l-025", "title": "Responsible AI use checklist", "type": "checklist", "content": "Guidelines for using AI tools safely and critically." }
+    ]
+  },
+  {
+    "id": "lab-006",
+    "title": "Common Scam Patterns in India",
+    "description": "Recognise the most common scam patterns used in India: lottery scams, KYC fraud, parcel delivery tricks, and fake customer care numbers.",
+    "category": "scam-awareness",
+    "estimatedMinutes": 20,
+    "icon": "shield-alert",
+    "lessons": [
+      { "id": "l-026", "title": "The anatomy of a scam", "type": "intro", "content": "Most scams follow a predictable pattern: urgency, authority, fear, and a demand for action. Learning to spot this pattern is your best defence." },
+      { "id": "l-027", "title": "Identify red flags", "type": "interactive", "content": "Read these real-world scam messages and identify the manipulation techniques being used." },
+      { "id": "l-028", "title": "The KYC scam", "type": "interactive", "content": "Your bank 'calls' to say your KYC is expiring. Walk through the conversation and spot where it becomes suspicious." },
+      { "id": "l-029", "title": "Reflection", "type": "reflection", "content": "Has anyone in your family received a call claiming to be from a bank? What happened?" },
+      { "id": "l-030", "title": "Scam defence checklist", "type": "checklist", "content": "Steps to protect yourself and your family from common scams." }
+    ]
+  }
+]

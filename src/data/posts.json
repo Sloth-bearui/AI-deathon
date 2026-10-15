@@ -1,0 +1,312 @@
+[
+  {
+    "id": "post-001",
+    "title": "WhatsApp forward claims RBI is recalling all ₹500 notes by December",
+    "claim": "RBI has announced that all ₹500 notes will be recalled from circulation by December 2026 and must be deposited in banks immediately.",
+    "content": "URGENT!! RBI OFFICIAL NOTICE: All ₹500 notes will be BANNED from December 1, 2026. Deposit all your cash in bank IMMEDIATELY or it will become WORTHLESS. Forward to all family members!!!\n\n— Forwarded many times",
+    "type": "forward",
+    "status": "misleading",
+    "sourcePlatform": "whatsapp",
+    "language": "en",
+    "contributorId": "contrib-001",
+    "dateSubmitted": "2026-10-14T08:30:00Z",
+    "relevanceScore": 15,
+    "investigationId": "inv-001",
+    "tags": ["banking", "currency", "government", "urgent-scam"],
+    "comments": [
+      {
+        "id": "com-001",
+        "contributorId": "contrib-002",
+        "content": "I checked the RBI website and there is no such announcement. This looks like a repeat of the 2016 demonetization rumour.",
+        "date": "2026-10-14T09:15:00Z",
+        "type": "evidence"
+      },
+      {
+        "id": "com-002",
+        "contributorId": "contrib-003",
+        "content": "My grandmother received this and was panicking. Thank you for checking.",
+        "date": "2026-10-14T10:00:00Z",
+        "type": "comment"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "ev-001",
+        "contributorId": "contrib-002",
+        "type": "contradicting",
+        "title": "No RBI press release found",
+        "description": "Searched RBI official website (rbi.org.in) press releases from October 2026. No announcement regarding ₹500 note recall exists.",
+        "sourceUrl": "https://rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx",
+        "date": "2026-10-14T09:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "post-002",
+    "title": "Viral image claims new Delhi Metro line reaches Agra",
+    "claim": "Delhi Metro has launched a new express line connecting Delhi to Agra, with journey time of just 90 minutes.",
+    "content": "Delhi Metro's new Agra Express line is now operational! 90-minute ride from New Delhi station to Agra Cantt. Book tickets on the DMRC app now!",
+    "type": "image",
+    "status": "investigating",
+    "mediaSvg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'><rect fill='#1a2744' width='400' height='200'/><rect x='20' y='120' width='360' height='60' rx='8' fill='#2a3a5c'/><text x='200' y='80' text-anchor='middle' fill='#38BDF8' font-family='sans-serif' font-size='16'>Delhi Metro — Agra Express</text><text x='200' y='158' text-anchor='middle' fill='#94A3B8' font-family='sans-serif' font-size='12'>AI-generated image placeholder</text></svg>",
+    "sourcePlatform": "twitter",
+    "language": "en",
+    "contributorId": "contrib-002",
+    "dateSubmitted": "2026-10-13T14:20:00Z",
+    "relevanceScore": 42,
+    "tags": ["infrastructure", "transport", "delhi"],
+    "comments": [],
+    "evidence": [
+      {
+        "id": "ev-002",
+        "contributorId": "contrib-001",
+        "type": "contextual",
+        "title": "DMRC expansion plans checked",
+        "description": "DMRC's official expansion plan (Phase IV) does not include any Agra route. The longest planned corridor is within NCR only.",
+        "date": "2026-10-13T15:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "post-003",
+    "title": "Video claims 5G towers cause health problems in nearby residents",
+    "claim": "5G mobile towers installed in residential areas are causing headaches, nosebleeds, and cancer in people living within 200 meters.",
+    "content": "WATCH THIS before it gets deleted!! 5G towers near houses are making people SICK. Residents of Andheri West report headaches, bleeding, and CANCER cases rising 300% since tower installation. Share before government removes this video!!",
+    "type": "video",
+    "status": "misleading",
+    "mediaSvg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'><rect fill='#1a2744' width='400' height='200'/><polygon points='180,70 180,130 230,100' fill='#F87171'/><text x='200' y='170' text-anchor='middle' fill='#94A3B8' font-family='sans-serif' font-size='12'>Video placeholder — 5G claim</text></svg>",
+    "sourcePlatform": "youtube",
+    "language": "en",
+    "contributorId": "contrib-003",
+    "dateSubmitted": "2026-10-12T11:00:00Z",
+    "relevanceScore": 12,
+    "investigationId": "inv-002",
+    "tags": ["health", "technology", "5g", "misinformation"],
+    "comments": [
+      {
+        "id": "com-003",
+        "contributorId": "contrib-001",
+        "content": "WHO has published extensive research showing 5G frequencies do not cause these health effects. The 300% cancer claim has no source.",
+        "date": "2026-10-12T12:30:00Z",
+        "type": "evidence"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "ev-003",
+        "contributorId": "contrib-001",
+        "type": "contradicting",
+        "title": "WHO electromagnetic field research",
+        "description": "WHO states that within the radio frequency range used by 5G, no adverse health effects have been causally established.",
+        "sourceUrl": "https://www.who.int/news-room/questions-and-answers/item/radiation-5g-mobile-networks-and-health",
+        "date": "2026-10-12T12:25:00Z"
+      },
+      {
+        "id": "ev-004",
+        "contributorId": "contrib-004",
+        "type": "contradicting",
+        "title": "No cancer data from ICMR",
+        "description": "No ICMR or municipal health department data supports a 300% cancer rate increase in Andheri West or any similar area.",
+        "date": "2026-10-12T13:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "post-004",
+    "title": "Message claims free government laptop scheme for students",
+    "claim": "The central government is giving free laptops to all students who fill an online form and pay ₹299 registration fee.",
+    "content": "🎓 FREE LAPTOP from Government of India! All students (Class 8 to College) can get a FREE laptop. Just fill the form at gov-laptop-free.in and pay ₹299 registration fee. Limited time offer! Forward to all student groups!",
+    "type": "forward",
+    "status": "misleading",
+    "sourcePlatform": "whatsapp",
+    "language": "en",
+    "contributorId": "contrib-004",
+    "dateSubmitted": "2026-10-11T16:45:00Z",
+    "relevanceScore": 8,
+    "investigationId": "inv-003",
+    "tags": ["education", "government-scheme", "scam", "phishing"],
+    "comments": [
+      {
+        "id": "com-004",
+        "contributorId": "contrib-002",
+        "content": "The website 'gov-laptop-free.in' is not a government domain. Government websites use .gov.in or .nic.in domains.",
+        "date": "2026-10-11T17:30:00Z",
+        "type": "evidence"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "ev-005",
+        "contributorId": "contrib-002",
+        "type": "contradicting",
+        "title": "Fake domain — not a government website",
+        "description": "The domain 'gov-laptop-free.in' is not registered under the .gov.in or .nic.in TLD used by official government websites. This appears to be a phishing site designed to collect personal information and payment.",
+        "date": "2026-10-11T17:25:00Z"
+      }
+    ]
+  },
+  {
+    "id": "post-005",
+    "title": "Claim: New traffic fine rule — ₹25,000 for honking",
+    "claim": "Starting November 2026, traffic police will fine ₹25,000 for honking in city limits across India.",
+    "content": "⚠️ New traffic rule! From November 1, honking anywhere in city limits will cost ₹25,000 fine. This is confirmed by Ministry of Transport. Drive silently or pay heavy fine! Share with all drivers!",
+    "type": "text",
+    "status": "needs-evidence",
+    "sourcePlatform": "whatsapp",
+    "language": "en",
+    "contributorId": "contrib-001",
+    "dateSubmitted": "2026-10-10T09:00:00Z",
+    "relevanceScore": 28,
+    "tags": ["traffic", "laws", "government"],
+    "comments": [],
+    "evidence": []
+  },
+  {
+    "id": "post-006",
+    "title": "Image shows supposed new ₹1000 note design",
+    "claim": "RBI has released the design of a new ₹1000 denomination note that will enter circulation in January 2027.",
+    "content": "FIRST LOOK: India's new ₹1000 note! RBI has confirmed a new denomination with enhanced security features. This will be the highest denomination note since 2016.",
+    "type": "image",
+    "status": "unverified",
+    "mediaSvg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'><rect fill='#1a3a2a' width='400' height='200' rx='12'/><text x='200' y='60' text-anchor='middle' fill='#34D399' font-family='sans-serif' font-size='28' font-weight='bold'>₹1000</text><text x='200' y='100' text-anchor='middle' fill='#94A3B8' font-family='sans-serif' font-size='14'>Reserve Bank of India</text><text x='200' y='170' text-anchor='middle' fill='#64748B' font-family='sans-serif' font-size='11'>Image placeholder — alleged note design</text></svg>",
+    "sourcePlatform": "telegram",
+    "language": "en",
+    "contributorId": "contrib-003",
+    "dateSubmitted": "2026-10-09T13:30:00Z",
+    "relevanceScore": 22,
+    "tags": ["banking", "currency", "rbi"],
+    "comments": [
+      {
+        "id": "com-005",
+        "contributorId": "contrib-004",
+        "content": "Has anyone found this on the RBI website? I could not find any press release about a new denomination.",
+        "date": "2026-10-09T14:00:00Z",
+        "type": "comment"
+      }
+    ],
+    "evidence": []
+  },
+  {
+    "id": "post-007",
+    "title": "Audio clip claims UIDAI is deactivating Aadhaar cards not linked to mobile",
+    "claim": "UIDAI will deactivate all Aadhaar cards not linked to a mobile number by October 31, 2026.",
+    "content": "🚨 URGENT AADHAAR ALERT 🚨\nUIDAI will DEACTIVATE your Aadhaar if your mobile number is not linked by October 31. You will not be able to use any government services. Link it now at the nearest centre!\n\n— Forwarded multiple times",
+    "type": "forward",
+    "status": "misleading",
+    "sourcePlatform": "whatsapp",
+    "language": "en",
+    "contributorId": "contrib-002",
+    "dateSubmitted": "2026-10-08T07:00:00Z",
+    "relevanceScore": 18,
+    "tags": ["aadhaar", "government", "identity", "urgent-scam"],
+    "comments": [
+      {
+        "id": "com-006",
+        "contributorId": "contrib-001",
+        "content": "UIDAI has repeatedly clarified that Aadhaar cards cannot be deactivated for not linking a mobile number. Mobile linking is optional and for the convenience of the holder.",
+        "date": "2026-10-08T08:30:00Z",
+        "type": "evidence"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "ev-006",
+        "contributorId": "contrib-001",
+        "type": "contradicting",
+        "title": "UIDAI official clarification on X (Twitter)",
+        "description": "UIDAI's verified X account has posted multiple clarifications stating that Aadhaar is never deactivated for not linking a mobile number.",
+        "date": "2026-10-08T08:25:00Z"
+      }
+    ]
+  },
+  {
+    "id": "post-008",
+    "title": "Claim: Eating ice cream after fish causes skin disease",
+    "claim": "Eating ice cream within 2 hours of consuming fish causes a severe skin disease called vitiligo (leucoderma).",
+    "content": "HEALTH WARNING: Never eat ice cream or milk products after eating fish. The combination creates a chemical reaction in the body causing WHITE PATCHES on skin (vitiligo). Many dermatologists have confirmed this. Please share for awareness.",
+    "type": "text",
+    "status": "misleading",
+    "sourcePlatform": "whatsapp",
+    "language": "en",
+    "contributorId": "contrib-004",
+    "dateSubmitted": "2026-10-07T19:00:00Z",
+    "relevanceScore": 10,
+    "tags": ["health", "food", "myths"],
+    "comments": [
+      {
+        "id": "com-007",
+        "contributorId": "contrib-003",
+        "content": "My doctor specifically said this is a myth. Vitiligo is an autoimmune condition and has nothing to do with food combinations.",
+        "date": "2026-10-07T20:00:00Z",
+        "type": "correction"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "ev-007",
+        "contributorId": "contrib-003",
+        "type": "contradicting",
+        "title": "Dermatological research on vitiligo",
+        "description": "Vitiligo is an autoimmune condition where melanocytes are destroyed by the immune system. No peer-reviewed study links it to food combinations. The Indian Association of Dermatologists has called this a myth.",
+        "date": "2026-10-07T19:45:00Z"
+      }
+    ]
+  },
+  {
+    "id": "post-009",
+    "title": "Photo claims water from Ganga river tested 100% pure",
+    "claim": "A laboratory in Varanasi has tested Ganga river water and found it to be 100% pure and safe for drinking without any treatment.",
+    "content": "MIRACLE! Scientists confirm Ganga water is 100% PURE. Lab tests in Varanasi show ZERO bacteria and ZERO contamination. No water purifier needed if you drink Ganga water directly! Our ancient sages were right all along!",
+    "type": "image",
+    "status": "needs-evidence",
+    "mediaSvg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'><rect fill='#1a2744' width='400' height='200'/><circle cx='200' cy='90' r='50' fill='none' stroke='#38BDF8' stroke-width='2'/><text x='200' y='95' text-anchor='middle' fill='#38BDF8' font-family='sans-serif' font-size='16'>💧</text><text x='200' y='170' text-anchor='middle' fill='#94A3B8' font-family='sans-serif' font-size='12'>Lab report image placeholder</text></svg>",
+    "sourcePlatform": "facebook",
+    "language": "en",
+    "contributorId": "contrib-001",
+    "dateSubmitted": "2026-10-06T12:00:00Z",
+    "relevanceScore": 25,
+    "tags": ["environment", "water", "science", "religion"],
+    "comments": [],
+    "evidence": []
+  },
+  {
+    "id": "post-010",
+    "title": "WhatsApp forward about free COVID booster causing heart attacks",
+    "claim": "The new COVID booster vaccine being given for free at government hospitals contains a substance that causes heart attacks within 6 months.",
+    "content": "⚠️ DO NOT TAKE THE NEW COVID BOOSTER! It contains graphene oxide that causes blood clots and heart attacks. 3 people in Mumbai hospital died within 6 months of taking it. Government is hiding the data. REFUSE the injection and warn your family!!! 🚫💉",
+    "type": "forward",
+    "status": "misleading",
+    "sourcePlatform": "whatsapp",
+    "language": "en",
+    "contributorId": "contrib-003",
+    "dateSubmitted": "2026-10-05T06:30:00Z",
+    "relevanceScore": 6,
+    "tags": ["health", "vaccine", "covid", "conspiracy"],
+    "comments": [
+      {
+        "id": "com-008",
+        "contributorId": "contrib-002",
+        "content": "The graphene oxide claim has been debunked by multiple international health organisations including WHO. COVID vaccines do not contain graphene oxide.",
+        "date": "2026-10-05T08:00:00Z",
+        "type": "evidence"
+      },
+      {
+        "id": "com-009",
+        "contributorId": "contrib-004",
+        "content": "The '3 deaths in Mumbai' claim has no source. Neither any hospital nor health authority has reported such deaths linked to the booster.",
+        "date": "2026-10-05T09:00:00Z",
+        "type": "evidence"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "ev-008",
+        "contributorId": "contrib-002",
+        "type": "contradicting",
+        "title": "WHO fact-check on graphene oxide in vaccines",
+        "description": "WHO has confirmed COVID vaccines approved for use do not contain graphene oxide. Vaccine ingredients are publicly listed by manufacturers and regulatory bodies.",
+        "date": "2026-10-05T07:50:00Z"
+      }
+    ]
+  }
+]

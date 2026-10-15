@@ -1,0 +1,68 @@
+{
+  "app_name": "Reality Check",
+  "tagline": "Verify. Learn. Stay Safe.",
+  "nav": {
+    "home": "Home",
+    "community": "Community",
+    "academy": "Academy",
+    "practice": "Phone Practice",
+    "settings": "Settings"
+  },
+  "home": {
+    "welcome": "What would you like to do today?",
+    "check_action": "Check something suspicious",
+    "check_desc": "Submit a claim, message, or image to investigate",
+    "learn_action": "Learn to spot scams",
+    "learn_desc": "Interactive lessons on staying safe online",
+    "practice_action": "Practice on a safe phone",
+    "practice_desc": "Try handling scam scenarios risk-free",
+    "continue": "Continue where you left off"
+  },
+  "community": {
+    "title": "Community",
+    "submit": "Check something",
+    "search": "Search posts...",
+    "filter_all": "All",
+    "filter_text": "Text",
+    "filter_image": "Image",
+    "filter_video": "Video",
+    "filter_forward": "Forwarded",
+    "empty": "No posts match your filters",
+    "empty_action": "Try different filters or submit a new claim"
+  },
+  "academy": {
+    "title": "Reality Check Academy",
+    "subtitle": "Build your digital safety skills",
+    "minutes": "{{count}} min",
+    "completed": "Completed",
+    "start": "Start learning"
+  },
+  "practice": {
+    "title": "Phone Practice",
+    "subtitle": "Practice handling real-world scam scenarios safely",
+    "ribbon": "This is a practice phone",
+    "gentle": "Gentle",
+    "standard": "Standard"
+  },
+  "accessibility": {
+    "text_smaller": "Smaller text",
+    "text_larger": "Larger text",
+    "theme": "Toggle theme",
+    "calm_mode": "Calm mode",
+    "read_aloud": "Read aloud",
+    "language": "Language"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "error_action": "Please try refreshing the page",
+    "save": "Save",
+    "share": "Share",
+    "back": "Go back",
+    "close": "Close",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "reset": "Reset demo data",
+    "help": "Help me"
+  }
+}

@@ -1,0 +1,70 @@
+[
+  {
+    "id": "contrib-001",
+    "name": "Priya Sharma",
+    "joinDate": "2026-06-15T00:00:00Z",
+    "avatarColor": "#2DD4BF",
+    "reportsReviewed": 47,
+    "corroboratedLater": 38,
+    "totalContributions": 62,
+    "reliabilityLevel": "established",
+    "bio": "Journalism student at Delhi University. Interested in media literacy and fact-checking. Volunteers with a local digital literacy NGO.",
+    "contributions": [
+      { "id": "c-001", "postId": "post-001", "type": "evidence", "title": "Checked RBI website for note recall notice", "date": "2026-10-14T09:10:00Z" },
+      { "id": "c-002", "postId": "post-003", "type": "evidence", "title": "Referenced WHO research on 5G safety", "date": "2026-10-12T12:25:00Z" },
+      { "id": "c-003", "postId": "post-007", "type": "evidence", "title": "Found UIDAI official clarification", "date": "2026-10-08T08:25:00Z" },
+      { "id": "c-004", "postId": "post-005", "type": "submitted", "title": "Submitted traffic fine claim for investigation", "date": "2026-10-10T09:00:00Z" },
+      { "id": "c-005", "postId": "post-009", "type": "submitted", "title": "Submitted Ganga water purity claim", "date": "2026-10-06T12:00:00Z" }
+    ]
+  },
+  {
+    "id": "contrib-002",
+    "name": "Rajesh Patel",
+    "joinDate": "2026-08-01T00:00:00Z",
+    "avatarColor": "#38BDF8",
+    "reportsReviewed": 23,
+    "corroboratedLater": 18,
+    "totalContributions": 31,
+    "reliabilityLevel": "developing",
+    "bio": "Software engineer from Pune. Curious about misinformation patterns in Indian social media.",
+    "contributions": [
+      { "id": "c-006", "postId": "post-001", "type": "comment", "title": "Noted similarity to 2016 demonetization rumours", "date": "2026-10-14T09:15:00Z" },
+      { "id": "c-007", "postId": "post-004", "type": "evidence", "title": "Identified fake government domain", "date": "2026-10-11T17:25:00Z" },
+      { "id": "c-008", "postId": "post-002", "type": "submitted", "title": "Submitted Delhi Metro Agra claim", "date": "2026-10-13T14:20:00Z" },
+      { "id": "c-009", "postId": "post-010", "type": "evidence", "title": "Referenced WHO on graphene oxide myth", "date": "2026-10-05T07:50:00Z" }
+    ]
+  },
+  {
+    "id": "contrib-003",
+    "name": "Ananya Desai",
+    "joinDate": "2026-09-10T00:00:00Z",
+    "avatarColor": "#F59E0B",
+    "reportsReviewed": 12,
+    "corroboratedLater": 9,
+    "totalContributions": 18,
+    "reliabilityLevel": "developing",
+    "bio": "Teacher in Bengaluru. Concerned about misinformation reaching parents through school WhatsApp groups.",
+    "contributions": [
+      { "id": "c-010", "postId": "post-003", "type": "submitted", "title": "Submitted 5G health claim video", "date": "2026-10-12T11:00:00Z" },
+      { "id": "c-011", "postId": "post-008", "type": "correction", "title": "Provided doctor's clarification on fish-ice cream myth", "date": "2026-10-07T19:45:00Z" },
+      { "id": "c-012", "postId": "post-006", "type": "submitted", "title": "Submitted ₹1000 note design claim", "date": "2026-10-09T13:30:00Z" },
+      { "id": "c-013", "postId": "post-010", "type": "submitted", "title": "Submitted COVID booster claim", "date": "2026-10-05T06:30:00Z" }
+    ]
+  },
+  {
+    "id": "contrib-004",
+    "name": "Mohammed Farhan",
+    "joinDate": "2026-10-01T00:00:00Z",
+    "avatarColor": "#F87171",
+    "reportsReviewed": 5,
+    "corroboratedLater": 3,
+    "totalContributions": 8,
+    "reliabilityLevel": "new",
+    "bio": "Recently retired bank manager from Hyderabad. Wants to help elderly friends identify banking scams.",
+    "contributions": [
+      { "id": "c-014", "postId": "post-004", "type": "submitted", "title": "Submitted free laptop scam forward", "date": "2026-10-11T16:45:00Z" },
+      { "id": "c-015", "postId": "post-008", "type": "submitted", "title": "Submitted fish-ice cream health myth", "date": "2026-10-07T19:00:00Z" },
+      { "id": "c-016", "postId": "post-003", "type": "evidence", "title": "Checked ICMR cancer data for Andheri West", "date": "2026-10-12T13:00:00Z" }
+    ]
+  }
+]

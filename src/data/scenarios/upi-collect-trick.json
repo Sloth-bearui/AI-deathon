@@ -1,0 +1,101 @@
+{
+  "id": "scenario-002",
+  "title": "The UPI Collect Trick",
+  "description": "Someone sends you a UPI collect request claiming to send you money. Can you tell what is really happening?",
+  "difficulty": "gentle",
+  "category": "payment-scam",
+  "startNodeId": "node-101",
+  "nodes": [
+    {
+      "id": "node-101",
+      "type": "notification",
+      "content": {
+        "title": "SwiftPay Notification",
+        "body": "Collect request of ₹5,000 from 'Ravi Kumar Seller'. Message: 'Paying for the laptop you listed on QuickSell. Accept to receive payment.'",
+        "sender": "SwiftPay"
+      },
+      "actions": [
+        { "id": "a-101", "label": "Accept the collect request", "nextNodeId": "node-102", "isSafe": false, "flagsSet": { "acceptedCollect": true }, "commentary": "Be careful — accepting a collect request sends money FROM your account, not to it." },
+        { "id": "a-102", "label": "Read the request carefully", "nextNodeId": "node-103", "isSafe": true, "flagsSet": { "readCarefully": true }, "commentary": "Good approach! Let us look at what this request actually means." },
+        { "id": "a-103", "label": "Decline the request", "nextNodeId": "node-106", "isSafe": true, "commentary": "Smart choice. When in doubt, decline." }
+      ]
+    },
+    {
+      "id": "node-102",
+      "type": "outcome",
+      "content": {
+        "title": "Money sent! (simulated)",
+        "body": "By accepting the collect request, you actually SENT ₹5,000 to the scammer. A collect request always takes money from your account.\n\nThis is one of the most common UPI scams in India. The scammer makes you think you are receiving money, but you are actually paying them.\n\nDo not worry — this was just practice!"
+      },
+      "actions": [
+        { "id": "a-104", "label": "See how it works", "nextNodeId": "node-104", "isSafe": true },
+        { "id": "a-105", "label": "See recovery steps", "nextNodeId": "node-107", "isSafe": true },
+        { "id": "a-106", "label": "Try again", "nextNodeId": "node-101", "isSafe": true }
+      ],
+      "flags": { "outcome": "compromised" }
+    },
+    {
+      "id": "node-103",
+      "type": "message",
+      "content": {
+        "title": "Understanding collect requests",
+        "body": "Let us break this down:\n\n• 'Collect request' means someone is ASKING FOR money from you\n• To RECEIVE money via UPI, you do NOT need to accept anything\n• If someone wants to pay you, they use 'Pay' — not 'Collect'\n• The message tries to confuse you by saying 'accept to receive payment'\n\nThis is a scam!",
+        "sender": "System"
+      },
+      "actions": [
+        { "id": "a-107", "label": "Decline and block", "nextNodeId": "node-105", "isSafe": true, "commentary": "Perfect response! You identified the scam." },
+        { "id": "a-108", "label": "Report the user on SwiftPay", "nextNodeId": "node-105", "isSafe": true, "commentary": "Reporting protects other people from this scammer." }
+      ]
+    },
+    {
+      "id": "node-104",
+      "type": "message",
+      "content": {
+        "title": "How the UPI Collect Scam Works",
+        "body": "Step 1: Scammer contacts you (often pretending to be a buyer)\nStep 2: They send a COLLECT request (which takes money from you)\nStep 3: They tell you to 'accept' to 'receive' payment\nStep 4: When you accept and enter your PIN, money leaves YOUR account\n\nRemember: You NEVER need to enter your UPI PIN to receive money. PIN is only needed to SEND money.",
+        "sender": "System"
+      },
+      "actions": [
+        { "id": "a-109", "label": "Try again with safer choices", "nextNodeId": "node-101", "isSafe": true }
+      ]
+    },
+    {
+      "id": "node-105",
+      "type": "outcome",
+      "content": {
+        "title": "Well done!",
+        "body": "You recognised the UPI collect scam and protected your money. Key things to remember:\n\n• You never need to accept anything or enter PIN to receive money\n• Collect requests always TAKE money from your account\n• If someone asks you to accept a collect request to 'receive' money, it is a scam\n• Report suspicious UPI requests in your payment app"
+      },
+      "actions": [
+        { "id": "a-110", "label": "Try a different scenario", "nextNodeId": "node-101", "isSafe": true }
+      ],
+      "flags": { "outcome": "safe" }
+    },
+    {
+      "id": "node-106",
+      "type": "message",
+      "content": {
+        "title": "You declined the request",
+        "body": "The person messages you: 'Why did you decline? I am trying to send you the money for the laptop. Please accept the request so I can pay you.'\n\nWhat would you like to do?",
+        "sender": "Ravi Kumar Seller"
+      },
+      "actions": [
+        { "id": "a-111", "label": "Tell them to use 'Pay' instead of 'Collect'", "nextNodeId": "node-105", "isSafe": true, "commentary": "Exactly right! A genuine buyer would use the Pay option, not Collect." },
+        { "id": "a-112", "label": "Accept the next collect request", "nextNodeId": "node-102", "isSafe": false, "commentary": "The scammer is pressuring you. Accepting still sends YOUR money." },
+        { "id": "a-113", "label": "Block and report the user", "nextNodeId": "node-105", "isSafe": true, "commentary": "Good call. Once you know it is a scam, blocking is the right move." }
+      ]
+    },
+    {
+      "id": "node-107",
+      "type": "message",
+      "content": {
+        "title": "Recovery Steps for UPI Fraud",
+        "body": "If money was taken from your account through UPI fraud:\n\n1. Call your bank within 3 days to report the fraud\n2. File a complaint on cybercrime.gov.in or call 1930\n3. Report the transaction in your UPI app\n4. File a complaint with your bank in writing\n5. Under RBI guidelines, if you report within 3 working days, the bank must investigate and may reverse the transaction\n\nThe sooner you report, the better the chance of recovery.",
+        "sender": "System"
+      },
+      "actions": [
+        { "id": "a-114", "label": "Try again with safer choices", "nextNodeId": "node-101", "isSafe": true }
+      ]
+    }
+  ]
+}

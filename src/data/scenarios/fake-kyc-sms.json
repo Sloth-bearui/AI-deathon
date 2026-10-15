@@ -1,0 +1,114 @@
+{
+  "id": "scenario-001",
+  "title": "The Fake KYC SMS",
+  "description": "You receive an SMS saying your bank KYC has expired and your account will be blocked. What do you do?",
+  "difficulty": "gentle",
+  "category": "banking-scam",
+  "startNodeId": "node-001",
+  "nodes": [
+    {
+      "id": "node-001",
+      "type": "notification",
+      "content": {
+        "title": "New SMS",
+        "body": "ALERT: Your Nova Bank KYC has expired. Your account will be BLOCKED within 24 hours. Update KYC immediately: novabank-kyc-update.in/verify",
+        "sender": "+91-9876XXXXX"
+      },
+      "actions": [
+        { "id": "a-001", "label": "Tap the link", "nextNodeId": "node-002", "isSafe": false, "flagsSet": { "tappedLink": true }, "commentary": "You opened a link from an unknown sender. Let us see what happens." },
+        { "id": "a-002", "label": "Ignore the message", "nextNodeId": "node-005", "isSafe": true, "commentary": "Good thinking! Ignoring suspicious messages is a safe choice." },
+        { "id": "a-003", "label": "Check the sender number", "nextNodeId": "node-003", "isSafe": true, "flagsSet": { "checkedSender": true }, "commentary": "Smart move! Checking who sent the message is an important first step." }
+      ]
+    },
+    {
+      "id": "node-002",
+      "type": "browser",
+      "content": {
+        "title": "Nova Bank — KYC Update",
+        "body": "Your account is at risk. Enter your details below to update your KYC and prevent account blocking.\n\nFull Name: ___\nAccount Number: ___\nDebit Card Number: ___\nCVV: ___\nOTP (sent to your mobile): ___",
+        "url": "novabank-kyc-update.in/verify"
+      },
+      "actions": [
+        { "id": "a-004", "label": "Fill in the form", "nextNodeId": "node-004", "isSafe": false, "flagsSet": { "sharedDetails": true }, "commentary": "You entered personal banking details on an unverified website." },
+        { "id": "a-005", "label": "Check the website URL carefully", "nextNodeId": "node-003", "isSafe": true, "flagsSet": { "checkedSender": true }, "commentary": "Good catch! Let us look at this URL more carefully." },
+        { "id": "a-006", "label": "Close the browser", "nextNodeId": "node-005", "isSafe": true, "commentary": "Good decision. Closing a suspicious page protects you." }
+      ]
+    },
+    {
+      "id": "node-003",
+      "type": "message",
+      "content": {
+        "title": "Checking the details",
+        "body": "You notice:\n• The sender is a random mobile number, not 'NOVBNK' (the official SMS header)\n• The URL is 'novabank-kyc-update.in' — the real bank website is 'novabank.co.in'\n• Real banks never ask for CVV or OTP via SMS links\n\nThis looks suspicious!",
+        "sender": "System"
+      },
+      "actions": [
+        { "id": "a-007", "label": "Delete the message and block the number", "nextNodeId": "node-006", "isSafe": true, "commentary": "Excellent! Deleting and blocking prevents future scam attempts from this number." },
+        { "id": "a-008", "label": "Call your bank's official number to verify", "nextNodeId": "node-007", "isSafe": true, "commentary": "Perfect choice. Calling the official number is the safest way to verify." }
+      ]
+    },
+    {
+      "id": "node-004",
+      "type": "outcome",
+      "content": {
+        "title": "Account compromised (simulated)",
+        "body": "In a real scenario, the scammer now has your bank details. They could:\n• Make unauthorised transactions\n• Change your account password\n• Apply for loans in your name\n\nDo not worry — this was just practice. Let us learn what to do if this happens for real."
+      },
+      "actions": [
+        { "id": "a-009", "label": "See recovery steps", "nextNodeId": "node-008", "isSafe": true },
+        { "id": "a-010", "label": "Try again", "nextNodeId": "node-001", "isSafe": true }
+      ],
+      "flags": { "outcome": "compromised" }
+    },
+    {
+      "id": "node-005",
+      "type": "outcome",
+      "content": {
+        "title": "Safe choice!",
+        "body": "You avoided the scam by not clicking the link. Remember:\n• Banks never send KYC links via SMS\n• Real banks use registered SMS headers (like NOVBNK), not mobile numbers\n• When in doubt, call your bank directly using the number on your card"
+      },
+      "actions": [
+        { "id": "a-011", "label": "Learn more about KYC scams", "nextNodeId": "node-008", "isSafe": true },
+        { "id": "a-012", "label": "Try a different scenario", "nextNodeId": "node-001", "isSafe": true }
+      ],
+      "flags": { "outcome": "safe" }
+    },
+    {
+      "id": "node-006",
+      "type": "outcome",
+      "content": {
+        "title": "Excellent awareness!",
+        "body": "You identified the scam, deleted the message, and blocked the sender. You are well-prepared to handle this type of scam in real life."
+      },
+      "actions": [
+        { "id": "a-013", "label": "Try a different scenario", "nextNodeId": "node-001", "isSafe": true }
+      ],
+      "flags": { "outcome": "safe" }
+    },
+    {
+      "id": "node-007",
+      "type": "message",
+      "content": {
+        "title": "Bank confirms it is a scam",
+        "body": "Nova Bank's customer care confirms: 'We never send KYC update links via SMS. This is a known scam. Please do not click such links and report them to cybercrime.gov.in.'",
+        "sender": "Nova Bank Official"
+      },
+      "actions": [
+        { "id": "a-014", "label": "Report to cybercrime portal", "nextNodeId": "node-006", "isSafe": true, "commentary": "Reporting helps protect others from the same scam." }
+      ],
+      "flags": { "outcome": "safe" }
+    },
+    {
+      "id": "node-008",
+      "type": "message",
+      "content": {
+        "title": "Recovery Steps",
+        "body": "If you shared your bank details on a suspicious website:\n\n1. Call your bank immediately and request to block your card\n2. Change your internet banking and UPI passwords\n3. File a complaint at cybercrime.gov.in or call 1930\n4. Monitor your account for unauthorised transactions\n5. Visit your bank branch with ID proof to get a new card\n\nAct within the first few hours for the best chance of recovery.",
+        "sender": "System"
+      },
+      "actions": [
+        { "id": "a-015", "label": "Try again with safer choices", "nextNodeId": "node-001", "isSafe": true }
+      ]
+    }
+  ]
+}
