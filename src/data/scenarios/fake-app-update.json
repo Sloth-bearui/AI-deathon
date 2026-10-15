@@ -1,0 +1,146 @@
+{
+  "id": "scenario-005",
+  "title": "Mandatory Banking App APK Update",
+  "summary": "A pop-up message warns that your Nova Bank mobile app will stop working tonight unless you install an urgent 'Security Patch APK' from an external link.",
+  "difficulty": "standard",
+  "minutes": 5,
+  "status": "ready",
+  "start": "node-browser-1",
+  "nodes": [
+    {
+      "id": "node-browser-1",
+      "app": "browser",
+      "title": "Security Alert Pop-up",
+      "page": {
+        "url": "http://novabank-security-update.net/patch",
+        "secure": false,
+        "heading": "Critical Nova Bank Security Update",
+        "body": "WARNING: Outdated version detected. Due to RBI security directive 2026, your app will be blocked at midnight. Click below to download NovaBank_Patch_v4.apk.",
+        "fields": []
+      },
+      "actions": [
+        {
+          "id": "act-check-playstore",
+          "label": "Open official App Store / Play Store to verify",
+          "next": "node-playstore",
+          "set": { "checkedSender": true },
+          "commentary": "You checked official stores instead of downloading unknown installation files.",
+          "safer": true
+        },
+        {
+          "id": "act-download-apk",
+          "label": "Download NovaBank_Patch_v4.apk",
+          "next": "node-settings-install",
+          "set": { "installedApp": true },
+          "commentary": "You downloaded an unknown Android package from a third-party webpage.",
+          "safer": false
+        },
+        {
+          "id": "act-close-tab",
+          "label": "Close the browser tab and ignore",
+          "next": "node-end-safe",
+          "commentary": "You recognized the fake browser overlay warning and closed it safely.",
+          "safer": true
+        }
+      ],
+      "hints": {
+        "nudge": "Where do official bank app updates come from? Does a bank ever ask you to download an APK file from a browser?",
+        "explain": "Banks NEVER distribute updates via APK download links. All official apps are only updated through the official Google Play Store or Apple App Store.",
+        "showMe": "Tap 'Open official App Store / Play Store to verify'."
+      }
+    },
+    {
+      "id": "node-playstore",
+      "app": "browser",
+      "title": "Official App Store",
+      "page": {
+        "url": "https://play.google.com/store/apps/details?id=com.novabank.mobile",
+        "secure": true,
+        "heading": "Nova Bank Mobile — Official App",
+        "body": "Version 3.8.1 (Up to date). Last updated 12 days ago. Verified by Play Protect. No mandatory manual APK installation is required."
+      },
+      "actions": [
+        {
+          "id": "act-confirm-safe",
+          "label": "Confirm app is current & report fake update website",
+          "next": "node-end-safe",
+          "set": { "reported": true },
+          "commentary": "You verified that your official app was already up to date.",
+          "safer": true
+        }
+      ],
+      "hints": {
+        "nudge": "The official store shows your app is already current. The website was completely fraudulent.",
+        "explain": "Always rely on the official operating system application stores for bank updates.",
+        "showMe": "Tap 'Confirm app is current & report fake update website'."
+      }
+    },
+    {
+      "id": "node-settings-install",
+      "app": "settings",
+      "title": "Security Settings",
+      "screen": {
+        "heading": "Install Unknown Apps Warning",
+        "body": "Chrome is requesting permission to 'Install unknown apps'. Granting this permission will allow NovaBank_Patch_v4.apk to read your screen, SMS, and OTPs.",
+        "items": ["Allow from this source: [Toggle ON/OFF]"]
+      },
+      "actions": [
+        {
+          "id": "act-deny-permission",
+          "label": "DENY permission and delete downloaded APK",
+          "next": "node-end-recovered",
+          "set": { "blockedSender": true },
+          "commentary": "You heeded the operating system warning and refused to allow unknown app installations.",
+          "safer": true
+        },
+        {
+          "id": "act-allow-permission",
+          "label": "Toggle 'Allow from this source' and install",
+          "next": "node-end-compromised",
+          "set": { "installedApp": true, "sharedOtp": true },
+          "commentary": "You granted accessibility and SMS interception permissions to a Trojan horse APK.",
+          "safer": false
+        }
+      ],
+      "hints": {
+        "nudge": "The system is warning you that the app can read your private SMS and OTPs.",
+        "explain": "Never enable 'Install unknown apps' or sideload APKs for any financial service.",
+        "showMe": "Tap 'DENY permission and delete downloaded APK'."
+      }
+    },
+    {
+      "id": "node-end-safe",
+      "app": "browser",
+      "title": "Safe Outcome",
+      "end": "safe",
+      "actions": [],
+      "hints": { "nudge": "Done", "explain": "Done", "showMe": "Done" }
+    },
+    {
+      "id": "node-end-recovered",
+      "app": "settings",
+      "title": "Recovered In Time",
+      "end": "recovered",
+      "actions": [],
+      "hints": { "nudge": "Done", "explain": "Done", "showMe": "Done" }
+    },
+    {
+      "id": "node-end-compromised",
+      "app": "bank",
+      "title": "Compromised (Simulated)",
+      "end": "compromised",
+      "actions": [],
+      "hints": { "nudge": "Done", "explain": "Done", "showMe": "Done" }
+    }
+  ],
+  "saferChoices": [
+    "Never download or install '.apk' files from WhatsApp links, SMS messages, or unfamiliar websites.",
+    "Keep 'Install unknown apps' disabled in phone security settings.",
+    "Verify app updates exclusively within the Google Play Store or Apple App Store."
+  ],
+  "recoverySteps": [
+    "Reboot the phone into Safe Mode and uninstall the malicious APK immediately.",
+    "Revoke Accessibility and SMS permissions in Settings → Apps.",
+    "Change your net banking password and UPI PIN from a clean secondary device."
+  ]
+}

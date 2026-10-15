@@ -1,42 +1,43 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Home, Users, GraduationCap, Smartphone } from 'lucide-react';
 import { cn } from '@/utils/cn';
+import { NAV_ITEMS } from './Sidebar';
 
-const navItems = [
-  { to: '/', icon: Home, labelKey: 'nav.home' },
-  { to: '/community', icon: Users, labelKey: 'nav.community' },
-  { to: '/academy', icon: GraduationCap, labelKey: 'nav.academy' },
-  { to: '/practice', icon: Smartphone, labelKey: 'nav.practice' },
-];
-
+/** Mobile bottom tab bar with 64px targets. */
 export const BottomNav: React.FC = () => {
   const { t } = useTranslation();
-  const location = useLocation();
-
   return (
-    <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-30 glass border-t border-[var(--glass-border)]" role="navigation" aria-label="Main navigation">
-      <div className="flex items-stretch justify-around">
-        {navItems.map(({ to, icon: Icon, labelKey }) => {
-          const isActive = to === '/' ? location.pathname === '/' : location.pathname.startsWith(to);
-          return (
+    <nav
+      aria-label={t('nav.label')}
+      data-tour="nav"
+      className="glass-strong fixed inset-x-0 bottom-0 z-40 border-x-0 border-b-0 pb-[env(safe-area-inset-bottom)] lg:hidden"
+    >
+      <ul className="mx-auto grid max-w-lg grid-cols-4">
+        {NAV_ITEMS.map(({ to, key, icon: Icon, end }) => (
+          <li key={to}>
             <NavLink
-              key={to}
               to={to}
-              className={cn(
-                'flex flex-col items-center justify-center gap-1 py-2 px-3 min-h-[64px] min-w-[64px] transition-colors text-xs',
-                isActive
-                  ? 'text-accent'
-                  : 'text-[var(--color-text-muted)]'
-              )}
+              end={end}
+              className={({ isActive }) =>
+                cn(
+                  'relative flex min-h-[68px] flex-col items-center justify-center gap-1 px-1 text-center text-[0.78rem] font-semibold leading-tight transition-colors',
+                  isActive ? 'text-accent-ink' : 'text-ink-2 hover:text-ink',
+                )
+              }
             >
-              <Icon size={24} />
-              <span className="font-medium">{t(labelKey)}</span>
+              {({ isActive }) => (
+                <>
+                  <span className={cn('grid h-8 w-14 place-items-center rounded-full transition-all', isActive && 'bg-accent/15')}>
+                    <Icon className="h-6 w-6" aria-hidden />
+                  </span>
+                  {t(`nav.${key}`)}
+                </>
+              )}
             </NavLink>
-          );
-        })}
-      </div>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 };

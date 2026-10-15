@@ -1,70 +1,70 @@
 {
-  "app_name": "Reality Check",
-  "tagline": "Verify. Learn. Stay Safe.",
+  "app": { "name": "Reality Check", "tagline": "Check it before you share it" },
   "nav": {
+    "label": "Main",
     "home": "Home",
     "community": "Community",
     "academy": "Academy",
     "practice": "Phone Practice",
-    "settings": "Settings"
+    "settings": "Settings",
+    "skip": "Skip to main content"
+  },
+  "a11y": {
+    "display": "Display",
+    "textSmaller": "Make text smaller",
+    "textLarger": "Make text larger",
+    "textSize": "Text size",
+    "themeDark": "Switch to dark theme",
+    "themeLight": "Switch to light theme",
+    "theme": "Theme",
+    "calm": "Calm mode",
+    "calmHint": "Turns off moving effects",
+    "readAloud": "Read aloud",
+    "stopReading": "Stop reading",
+    "language": "हिंदी",
+    "languageLabel": "Change language to Hindi"
   },
   "home": {
-    "welcome": "What would you like to do today?",
-    "subtitle": "Community-powered verification for the information you receive every day. Check suspicious claims, learn digital safety, and practice spotting scams.",
-    "check_title": "Check Something",
-    "check_desc": "Paste a WhatsApp forward, URL, or suspicious message to get it verified by the community.",
-    "check_cta": "Submit a claim",
-    "learn_title": "Learn Digital Safety",
-    "learn_desc": "Interactive lessons on spotting scams, verifying images, and protecting your accounts.",
-    "learn_cta": "Start learning",
-    "practice_title": "Practice Safely",
-    "practice_desc": "Try handling real-world scam scenarios on a simulated phone — no risk involved.",
-    "practice_cta": "Open practice",
-    "continue": "Continue where you left off"
+    "greeting": "Namaste. You are in a safe place.",
+    "title": "What would you like to do today?",
+    "subtitle": "Check a message you are unsure about, learn the warning signs, or practise on a pretend phone. Nothing here can harm you.",
+    "actions": {
+      "check": { "title": "Check something suspicious", "body": "Paste a message, link or photo. The community looks at the evidence with you.", "cta": "Check a message" },
+      "learn": { "title": "Learn to spot scams", "body": "Short, friendly lessons about fake messages, UPI and AI videos.", "cta": "Start learning" },
+      "practice": { "title": "Practise on a safe phone", "body": "Try real-looking situations on a pretend phone. No real money, no real risk.", "cta": "Start practice" }
+    },
+    "continue": "Pick up where you left off",
+    "continueLab": "Lesson",
+    "continueScenario": "Phone practice",
+    "resume": "Continue",
+    "nothingYet": "Nothing started yet. When you begin a lesson or a practice, it will appear here.",
+    "promise": {
+      "title": "Our promise to you",
+      "p1": "We never ask for passwords, PINs or OTPs.",
+      "p2": "Practice pages use pretend banks and apps.",
+      "p3": "Investigations here are demonstrations, clearly labelled."
+    }
   },
-  "community": {
-    "title": "Community Feed",
-    "subtitle": "Claims submitted and investigated by the community",
-    "submit_claim": "Check something",
-    "search_placeholder": "Search claims, topics, or keywords...",
-    "filter_all": "All",
-    "filter_text": "Text",
-    "filter_image": "Image",
-    "filter_video": "Video",
-    "filter_forward": "Forwarded",
-    "empty": "No posts match your filters",
-    "empty_action": "Try different filters or submit a new claim"
+  "welcome": {
+    "title": "Welcome to Reality Check",
+    "body": "Pick a text size that feels comfortable. You can change it any time.",
+    "preview": "This is how text will look. Can you read it easily?",
+    "small": "Standard",
+    "medium": "Large",
+    "large": "Extra large",
+    "continue": "This feels right — continue"
   },
-  "academy": {
-    "title": "Reality Check Academy",
-    "subtitle": "Build your digital safety skills — at your own pace",
-    "minutes": "{{count}} min",
-    "completed": "Completed",
-    "start": "Start learning"
+  "help": {
+    "button": "Help me",
+    "title": "How can we help?",
+    "tour": "Show me around",
+    "close": "Close help"
   },
-  "simulator": {
-    "title": "Phone Practice",
-    "subtitle": "Practice handling real-world scam scenarios safely on a simulated phone"
-  },
-  "accessibility": {
-    "text_smaller": "Smaller text",
-    "text_larger": "Larger text",
-    "theme": "Toggle theme",
-    "calm_mode": "Calm mode",
-    "read_aloud": "Read aloud",
-    "language": "Language"
-  },
-  "common": {
-    "loading": "Loading...",
-    "error": "Something went wrong",
-    "error_action": "Please try refreshing the page",
-    "save": "Save",
-    "share": "Share",
-    "back": "Go back",
-    "close": "Close",
-    "submit": "Submit",
-    "cancel": "Cancel",
-    "reset": "Reset",
-    "help": "Help me"
+  "settings": {
+    "title": "Settings",
+    "reset": "Reset demo data",
+    "resetBody": "This clears your saved posts, comments, practice and lessons on this device.",
+    "resetConfirm": "Yes, reset everything",
+    "welcomeAgain": "Show the welcome screen again"
   }
 }

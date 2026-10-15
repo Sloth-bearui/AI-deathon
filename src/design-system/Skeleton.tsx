@@ -1,29 +1,27 @@
 import React from 'react';
 import { cn } from '@/utils/cn';
 
-interface SkeletonProps {
-  className?: string;
-  count?: number;
-}
+export const Skeleton: React.FC<{ className?: string }> = ({ className }) => (
+  <div className={cn('skeleton h-4', className)} aria-hidden />
+);
 
-export const Skeleton: React.FC<SkeletonProps> = ({ className, count = 1 }) => {
-  return (
-    <>
-      {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className={cn('skeleton h-4 rounded', className)} />
-      ))}
-    </>
-  );
-};
-
-export const SkeletonCard: React.FC = () => (
-  <div className="glass rounded-glass p-6 space-y-4">
-    <Skeleton className="h-4 w-3/4" />
-    <Skeleton className="h-3 w-full" />
-    <Skeleton className="h-3 w-5/6" />
-    <div className="flex gap-2 mt-4">
+/** Placeholder matching the PostCard / LabCard shape. */
+export const SkeletonCard: React.FC<{ media?: boolean }> = ({ media = true }) => (
+  <div className="glass space-y-4 rounded-glass p-5" aria-hidden>
+    {media && <Skeleton className="h-40 w-full rounded-2xl" />}
+    <Skeleton className="h-5 w-3/4" />
+    <Skeleton className="h-4 w-full" />
+    <Skeleton className="h-4 w-5/6" />
+    <div className="flex gap-2 pt-2">
+      <Skeleton className="h-8 w-28 rounded-full" />
       <Skeleton className="h-8 w-20 rounded-full" />
-      <Skeleton className="h-8 w-16 rounded-full" />
     </div>
+  </div>
+);
+
+export const SkeletonList: React.FC<{ count?: number; media?: boolean; label?: string }> = ({ count = 3, media, label = 'Loading' }) => (
+  <div role="status" aria-live="polite" className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+    <span className="sr-only">{label}…</span>
+    {Array.from({ length: count }).map((_, i) => <SkeletonCard key={i} media={media} />)}
   </div>
 );

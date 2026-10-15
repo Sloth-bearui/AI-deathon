@@ -1,0 +1,158 @@
+{
+  "id": "scenario-003",
+  "title": "Undelivered Parcel Address Link",
+  "summary": "You receive a text claiming your courier delivery is held at the depot due to an incomplete house number. A link asks for a ₹25 address update fee.",
+  "difficulty": "gentle",
+  "minutes": 4,
+  "status": "ready",
+  "start": "node-msg-1",
+  "nodes": [
+    {
+      "id": "node-msg-1",
+      "app": "messages",
+      "title": "Delivery Notice",
+      "thread": {
+        "contact": "SpeedPost-Notice",
+        "number": "+91-98110XXXXX",
+        "messages": [
+          {
+            "from": "+91-98110XXXXX",
+            "body": "Your package #IN882910 could not be delivered: Missing building number. Please update details and pay ₹25 redelivery charge within 12h: swiftpost-track.click/addr",
+            "time": "10:14 AM",
+            "redFlags": [
+              "Sent from personal 10-digit number instead of official SMS header (e.g., IX-INPOST)",
+              "Generic non-official domain (.click)",
+              "Artificial urgency: 12-hour deadline"
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "id": "act-check-sender",
+          "label": "Inspect sender number & tracking link",
+          "next": "node-browser-inspect",
+          "set": { "checkedSender": true },
+          "commentary": "You checked who sent it and noticed it was sent from a personal prepaid SIM, not postal services.",
+          "safer": true
+        },
+        {
+          "id": "act-tap-link",
+          "label": "Tap the link to pay ₹25 and update address",
+          "next": "node-browser-fake",
+          "set": { "tappedLink": true },
+          "commentary": "You opened the link directly from an SMS message.",
+          "safer": false
+        },
+        {
+          "id": "act-ignore",
+          "label": "Ignore and delete the message",
+          "next": "node-end-safe",
+          "set": { "blockedSender": true },
+          "commentary": "You recognized the classic parcel scam and did not engage.",
+          "safer": true
+        }
+      ],
+      "hints": {
+        "nudge": "Look closely at the sender. Does India Post or standard couriers send SMS from 10-digit personal mobile numbers?",
+        "explain": "Postal and legitimate courier services send updates from alphanumeric headers (like BZ-POST), never random mobile numbers. They never charge a re-delivery fee over a link.",
+        "showMe": "Choose 'Inspect sender number & tracking link' or verify tracking directly on the official courier portal."
+      }
+    },
+    {
+      "id": "node-browser-inspect",
+      "app": "browser",
+      "title": "Official Portal Verification",
+      "page": {
+        "url": "https://official-postal-portal.gov.in",
+        "secure": true,
+        "heading": "Official Postal Advisory",
+        "body": "PUBLIC ADVISORY: Postal services never demand address update fees or OTPs via SMS. Never click on shortened or suspicious links."
+      },
+      "actions": [
+        {
+          "id": "act-report-block",
+          "label": "Block the number and report scam",
+          "next": "node-end-safe",
+          "set": { "reported": true, "blockedSender": true },
+          "commentary": "You verified with the official advisory and blocked the scammer.",
+          "safer": true
+        }
+      ],
+      "hints": {
+        "nudge": "Now that you confirmed it is fake, protect yourself by blocking the number.",
+        "explain": "Blocking prevents further follow-up phishing attempts from this burner number.",
+        "showMe": "Tap 'Block the number and report scam'."
+      }
+    },
+    {
+      "id": "node-browser-fake",
+      "app": "browser",
+      "title": "Phishing Gateway",
+      "page": {
+        "url": "http://swiftpost-track.click/addr",
+        "secure": false,
+        "heading": "Redelivery Fee Payment — SwiftPost",
+        "body": "Enter Card Number, Expiry, CVV, and Net Banking Password to authorise ₹25 redelivery fee.",
+        "fields": ["Card Number", "CVV", "Card PIN / Net Banking Password"]
+      },
+      "actions": [
+        {
+          "id": "act-submit-card",
+          "label": "Enter card details & CVV to pay ₹25",
+          "next": "node-end-compromised",
+          "set": { "sharedOtp": true, "enteredPin": true },
+          "commentary": "You submitted your debit card number and CVV on an unencrypted fake page.",
+          "safer": false
+        },
+        {
+          "id": "act-close-browser",
+          "label": "Notice insecure HTTP & close browser immediately",
+          "next": "node-end-recovered",
+          "set": { "checkedSender": true },
+          "commentary": "You realized the page was insecure and was asking for sensitive card PINs.",
+          "safer": true
+        }
+      ],
+      "hints": {
+        "nudge": "Notice the web address. Is it an official domain? Why would an address update ask for your card PIN?",
+        "explain": "A genuine delivery company does not need your card CVV or ATM PIN to update an address.",
+        "showMe": "Tap 'Notice insecure HTTP & close browser immediately'."
+      }
+    },
+    {
+      "id": "node-end-safe",
+      "app": "messages",
+      "title": "Safe Outcome",
+      "end": "safe",
+      "actions": [],
+      "hints": { "nudge": "Done", "explain": "Done", "showMe": "Done" }
+    },
+    {
+      "id": "node-end-recovered",
+      "app": "messages",
+      "title": "Recovered In Time",
+      "end": "recovered",
+      "actions": [],
+      "hints": { "nudge": "Done", "explain": "Done", "showMe": "Done" }
+    },
+    {
+      "id": "node-end-compromised",
+      "app": "bank",
+      "title": "Compromised (Simulated)",
+      "end": "compromised",
+      "actions": [],
+      "hints": { "nudge": "Done", "explain": "Done", "showMe": "Done" }
+    }
+  ],
+  "saferChoices": [
+    "Always check the SMS header: official couriers use verified alphanumeric sender tags (e.g. DZ-DELHIV).",
+    "Never pay nominal redelivery fees (₹5, ₹10, ₹25) via SMS links; this is a known trick to capture card credentials.",
+    "Verify tracking numbers directly on the courier's official app or bookmarked website."
+  ],
+  "recoverySteps": [
+    "Call 1930 (National Cyber Crime Reporting Helpline) or log on to cybercrime.gov.in.",
+    "Immediately lock your debit/credit card via your bank app or net banking.",
+    "Contact your bank's fraud division to block further unauthorized merchant transactions."
+  ]
+}

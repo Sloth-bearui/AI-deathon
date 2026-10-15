@@ -1,37 +1,36 @@
 import React from 'react';
 import { cn } from '@/utils/cn';
 
+export type Tone = 'neutral' | 'accent' | 'ok' | 'warn' | 'bad' | 'info';
+
+const tones: Record<Tone, string> = {
+  neutral: 'bg-surface text-ink-2 border-line',
+  accent: 'bg-accent/12 text-accent-ink border-accent/30',
+  ok: 'bg-ok/12 text-ok-ink border-ok/35',
+  warn: 'bg-warn/12 text-warn-ink border-warn/35',
+  bad: 'bg-bad/12 text-bad-ink border-bad/35',
+  info: 'bg-accent-2/12 text-ink border-accent-2/35',
+};
+
 interface BadgeProps {
+  tone?: Tone;
+  icon?: React.ReactNode;
   children: React.ReactNode;
-  variant?: 'default' | 'verified' | 'caution' | 'danger' | 'info' | 'success' | 'error' | 'warning';
   className?: string;
+  size?: 'sm' | 'md';
 }
 
-const variantClasses: Record<string, string> = {
-  default: 'bg-[var(--color-surface)] text-[var(--color-text-secondary)]',
-  verified: 'bg-status-verified/15 text-status-verified',
-  success: 'bg-emerald-400/15 text-emerald-400',
-  caution: 'bg-status-caution/15 text-status-caution',
-  warning: 'bg-amber-400/15 text-amber-400',
-  danger: 'bg-status-danger/15 text-status-danger',
-  error: 'bg-red-400/15 text-red-400',
-  info: 'bg-status-info/15 text-status-info',
-};
-
-export const Badge: React.FC<BadgeProps> = ({
-  children,
-  variant = 'default',
-  className,
-}) => {
-  return (
-    <span
-      className={cn(
-        'inline-flex items-center gap-1.5 px-3 py-1 text-sm font-medium rounded-full',
-        variantClasses[variant] || variantClasses.default,
-        className
-      )}
-    >
-      {children}
-    </span>
-  );
-};
+/** Status pill. Always pair colour with an icon AND a text label. */
+export const Badge: React.FC<BadgeProps> = ({ tone = 'neutral', icon, children, className, size = 'md' }) => (
+  <span
+    className={cn(
+      'inline-flex items-center gap-1.5 rounded-full border font-semibold leading-none whitespace-nowrap',
+      size === 'md' ? 'px-3 py-1.5 text-sm' : 'px-2.5 py-1 text-xs',
+      tones[tone],
+      className,
+    )}
+  >
+    {icon && <span className="[&>svg]:h-4 [&>svg]:w-4" aria-hidden>{icon}</span>}
+    {children}
+  </span>
+);

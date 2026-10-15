@@ -1,0 +1,123 @@
+{
+  "id": "scenario-006",
+  "title": "WhatsApp Lottery & Prize Winner Claim",
+  "summary": "A colorful certificate arrives on WhatsApp stating your phone number won ₹25,00,000 in a television lottery. A representative asks for ₹12,500 advance tax clearance.",
+  "difficulty": "gentle",
+  "minutes": 4,
+  "status": "ready",
+  "start": "node-msg-1",
+  "nodes": [
+    {
+      "id": "node-msg-1",
+      "app": "messages",
+      "title": "WhatsApp Message",
+      "thread": {
+        "contact": "KBC Lottery Office (+91-70010XXXXX)",
+        "number": "+91-70010XXXXX",
+        "messages": [
+          {
+            "from": "+91-70010XXXXX",
+            "body": "CONGRATULATIONS! Your mobile SIM card has won ₹25,00,000 in the 2026 Special TV Mega Draw. To deposit this amount to your savings account today, transfer ₹12,500 government clearance tax to our nodal officer.",
+            "time": "11:20 AM",
+            "redFlags": [
+              "You never purchased a lottery ticket or entered any contest",
+              "Demands upfront advance payment to release winnings",
+              "Uses prestigious TV show brand name without authorization"
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "id": "act-ask-why-pay",
+          "label": "Ask: 'If I won, why not deduct ₹12,500 from the prize?'",
+          "next": "node-msg-deduct",
+          "commentary": "You tested the core logic: legitimate lotteries deduct tax at source (TDS), they never ask winners to pay upfront.",
+          "safer": true
+        },
+        {
+          "id": "act-transfer-tax",
+          "label": "Transfer ₹12,500 advance fee to receive ₹25,00,000",
+          "next": "node-end-compromised",
+          "set": { "enteredPin": true },
+          "commentary": "You transferred real advance money for an imaginary prize.",
+          "safer": false
+        },
+        {
+          "id": "act-block-lottery",
+          "label": "Block and report sender on WhatsApp",
+          "next": "node-end-safe",
+          "set": { "blockedSender": true, "reported": true },
+          "commentary": "You instantly recognized the classic advance-fee lottery scam.",
+          "safer": true
+        }
+      ],
+      "hints": {
+        "nudge": "Did you ever enter this lottery? Can you win a lottery you never bought a ticket for?",
+        "explain": "You cannot win a contest you never entered. In India, lottery taxes (TDS under Sec 194B) are legally deducted from the prize, never paid upfront by the winner.",
+        "showMe": "Tap 'Block and report sender on WhatsApp'."
+      }
+    },
+    {
+      "id": "node-msg-deduct",
+      "app": "messages",
+      "title": "WhatsApp Message",
+      "thread": {
+        "contact": "KBC Lottery Office",
+        "messages": [
+          {
+            "from": "You",
+            "body": "If I won ₹25 lakhs, please deduct ₹12,500 from the winnings and send me the rest.",
+            "time": "11:22 AM"
+          },
+          {
+            "from": "+91-70010XXXXX",
+            "body": "Sir system rules do not allow deduction. If you do not transfer ₹12,500 within 30 minutes, your prize will be cancelled and given to next number!",
+            "time": "11:23 AM"
+          }
+        ]
+      },
+      "actions": [
+        {
+          "id": "act-block-scammer",
+          "label": "Block number immediately — artificial urgency confirms fraud",
+          "next": "node-end-safe",
+          "set": { "blockedSender": true },
+          "commentary": "The scammer's refusal and 30-minute threat proved it was an extortion attempt.",
+          "safer": true
+        }
+      ],
+      "hints": {
+        "nudge": "The scammer gave an evasive answer and applied high pressure.",
+        "explain": "Real prizes never expire in 30 minutes.",
+        "showMe": "Tap 'Block number immediately'."
+      }
+    },
+    {
+      "id": "node-end-safe",
+      "app": "messages",
+      "title": "Safe Outcome",
+      "end": "safe",
+      "actions": [],
+      "hints": { "nudge": "Done", "explain": "Done", "showMe": "Done" }
+    },
+    {
+      "id": "node-end-compromised",
+      "app": "bank",
+      "title": "Compromised (Simulated)",
+      "end": "compromised",
+      "actions": [],
+      "hints": { "nudge": "Done", "explain": "Done", "showMe": "Done" }
+    }
+  ],
+  "saferChoices": [
+    "Remember the golden rule: If you didn't buy a ticket, you didn't win a prize.",
+    "Legitimate entities never ask for 'clearance fees', 'GST charges', or 'processing taxes' to release winnings.",
+    "Do not interact with lottery forwards on WhatsApp; report them as spam."
+  ],
+  "recoverySteps": [
+    "Report the transaction immediately to 1930 and file a complaint on cybercrime.gov.in.",
+    "Provide the recipient UPI ID and mobile phone number to your local cyber cell.",
+    "Block all related phone numbers and advise family members not to respond to similar messages."
+  ]
+}

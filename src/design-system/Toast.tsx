@@ -1,65 +1,60 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, AlertCircle, Info, X } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { CheckCircle2, AlertTriangle, Info, X } from 'lucide-react';
+import { create } from 'zustand';
 import { cn } from '@/utils/cn';
 
-type ToastType = 'success' | 'error' | 'info';
+type ToastKind = 'success' | 'error' | 'info';
+interface ToastItem { id: number; kind: ToastKind; title: string; body?: string }
 
-interface ToastData {
-  id: string;
-  message: string;
-  type: ToastType;
-}
+const useToasts = create<{ items: ToastItem[]; push: (t: Omit<ToastItem, 'id'>) => void; drop: (id: number) => void }>((set) => ({
+  items: [],
+  push: (t) => set((s) => ({ items: [...s.items.slice(-2), { ...t, id: Date.now() + Math.random() }] })),
+  drop: (id) => set((s) => ({ items: s.items.filter((i) => i.id !== id) })),
+}));
 
-let addToastFn: ((message: string, type?: ToastType) => void) | null = null;
-
-export function toast(message: string, type: ToastType = 'info') {
-  addToastFn?.(message, type);
-}
-
-const icons = {
-  success: <CheckCircle size={20} className="text-status-verified" />,
-  error: <AlertCircle size={20} className="text-status-danger" />,
-  info: <Info size={20} className="text-accent" />,
+/** Fire a toast from anywhere: toast.success('Saved'). */
+export const toast = {
+  success: (title: string, body?: string) => useToasts.getState().push({ kind: 'success', title, body }),
+  error: (title: string, body?: string) => useToasts.getState().push({ kind: 'error', title, body }),
+  info: (title: string, body?: string) => useToasts.getState().push({ kind: 'info', title, body }),
 };
 
-export const ToastContainer: React.FC = () => {
-  const [toasts, setToasts] = useState<ToastData[]>([]);
+const icon = {
+  success: <CheckCircle2 className="h-6 w-6 text-ok-ink" />,
+  error: <AlertTriangle className="h-6 w-6 text-bad-ink" />,
+  info: <Info className="h-6 w-6 text-accent-ink" />,
+};
 
+const ToastCard: React.FC<{ t: ToastItem }> = ({ t }) => {
+  const drop = useToasts((s) => s.drop);
+  const [leaving, setLeaving] = useState(false);
   useEffect(() => {
-    addToastFn = (message, type = 'info') => {
-      const id = crypto.randomUUID();
-      setToasts((prev) => [...prev, { id, message, type }]);
-      setTimeout(() => {
-        setToasts((prev) => prev.filter((t) => t.id !== id));
-      }, 4000);
-    };
-    return () => { addToastFn = null; };
-  }, []);
-
+    const a = setTimeout(() => setLeaving(true), 4600);
+    const b = setTimeout(() => drop(t.id), 5000);
+    return () => { clearTimeout(a); clearTimeout(b); };
+  }, [t.id, drop]);
   return (
-    <div className="fixed bottom-4 right-4 z-[100] flex flex-col gap-2 max-w-sm">
-      <AnimatePresence>
-        {toasts.map((t) => (
-          <motion.div
-            key={t.id}
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            className={cn('glass rounded-card p-4 flex items-start gap-3 shadow-lg')}
-          >
-            {icons[t.type]}
-            <p className="flex-1 text-sm">{t.message}</p>
-            <button
-              onClick={() => setToasts((prev) => prev.filter((x) => x.id !== t.id))}
-              className="shrink-0 p-1 rounded hover:bg-[var(--color-hover)]"
-              aria-label="Dismiss"
-            >
-              <X size={16} />
-            </button>
-          </motion.div>
-        ))}
-      </AnimatePresence>
+    <div
+      role={t.kind === 'error' ? 'alert' : 'status'}
+      className={cn('glass-strong pointer-events-auto flex w-full items-start gap-3 rounded-2xl p-4 transition-all duration-300', leaving ? 'translate-y-2 opacity-0' : 'rc-pop')}
+    >
+      {icon[t.kind]}
+      <div className="flex-1">
+        <p className="font-heading font-semibold">{t.title}</p>
+        {t.body && <p className="text-sm text-ink-2">{t.body}</p>}
+      </div>
+      <button className="grid h-10 w-10 place-items-center rounded-full hover:bg-hover" onClick={() => drop(t.id)} aria-label="Dismiss message">
+        <X className="h-5 w-5" />
+      </button>
+    </div>
+  );
+};
+
+export const ToastViewport: React.FC = () => {
+  const items = useToasts((s) => s.items);
+  return (
+    <div aria-live="polite" className="pointer-events-none fixed inset-x-3 bottom-24 z-[130] mx-auto flex max-w-md flex-col gap-2 lg:bottom-6 lg:left-auto lg:right-6">
+      {items.map((t) => <ToastCard key={t.id} t={t} />)}
     </div>
   );
 };

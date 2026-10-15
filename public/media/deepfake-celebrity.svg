@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" width="100%" height="100%">
+  <rect width="600" height="320" fill="#111827"/>
+  <rect x="80" y="40" width="440" height="240" rx="16" fill="#1f2937" stroke="#a855f7" stroke-width="2"/>
+  <circle cx="220" cy="150" r="50" fill="#374151"/>
+  <circle cx="220" cy="130" r="22" fill="#6b7280"/>
+  <path d="M190 180 Q 220 160, 250 180" stroke="#a855f7" stroke-width="3" fill="none"/>
+  <rect x="300" y="110" width="180" height="16" rx="4" fill="#6b7280"/>
+  <rect x="300" y="140" width="140" height="12" rx="4" fill="#4b5563"/>
+  <rect x="300" y="165" width="160" height="12" rx="4" fill="#4b5563"/>
+  <rect x="300" y="195" width="120" height="28" rx="6" fill="#a855f7" opacity="0.3"/>
+  <text x="360" y="214" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#c084fc">SYNTHETIC VOICE</text>
+  <text x="300" y="265" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#9ca3af">Simulated Video Artifact: Lip-sync mismatch</text>
+</svg>

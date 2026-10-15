@@ -1,0 +1,170 @@
+{
+  "id": "scenario-004",
+  "title": "Family Emergency SOS Voice Note",
+  "summary": "You receive a WhatsApp message from an unknown number claiming to be your nephew in distress at a police station, requesting urgent UPI transfer.",
+  "difficulty": "standard",
+  "minutes": 5,
+  "status": "ready",
+  "start": "node-msg-1",
+  "nodes": [
+    {
+      "id": "node-msg-1",
+      "app": "messages",
+      "title": "WhatsApp Message",
+      "thread": {
+        "contact": "Unknown (+91-97210XXXXX)",
+        "number": "+91-97210XXXXX",
+        "messages": [
+          {
+            "from": "+91-97210XXXXX",
+            "body": "Uncle! My phone was stolen and my friend let me borrow this. I had a minor car accident in Jaipur. Police want ₹15,000 spot fine or they will seize my vehicle. Please UPI immediately to this officer's UPI ID: police-settlement@swiftpay. Do not call my parents, they will panic!",
+            "time": "2:30 PM",
+            "redFlags": [
+              "Emotional pressure & emergency urgency",
+              "Instructs not to call parents (isolating the victim)",
+              "Personal UPI handle for government/police fine"
+            ]
+          }
+        ]
+      },
+      "actions": [
+        {
+          "id": "act-call-nephew",
+          "label": "Call nephew's original known phone number",
+          "next": "node-phone-check",
+          "set": { "checkedSender": true },
+          "commentary": "You dialed your nephew's real number saved in your contacts to verify his whereabouts.",
+          "safer": true
+        },
+        {
+          "id": "act-pay-upi",
+          "label": "Open SwiftPay bank app & transfer ₹15,000",
+          "next": "node-bank-pay",
+          "set": { "enteredPin": true },
+          "commentary": "You hurried to transfer money without verifying identity.",
+          "safer": false
+        },
+        {
+          "id": "act-ask-family",
+          "label": "Ask a personal question only the real nephew knows",
+          "next": "node-msg-challenge",
+          "commentary": "You asked a personal family question to verify identity.",
+          "safer": true
+        }
+      ],
+      "hints": {
+        "nudge": "Scammers exploit emotional panic. What is the single safest way to verify if your nephew is actually in trouble?",
+        "explain": "Always call the known contact number or contact another family member directly before sending any emergency money.",
+        "showMe": "Tap 'Call nephew's original known phone number'."
+      }
+    },
+    {
+      "id": "node-phone-check",
+      "app": "phone",
+      "title": "Call Nephew",
+      "screen": {
+        "heading": "Calling Nephew (Rohan)...",
+        "body": "Rohan answers normally from his college library: 'Hi Uncle! No, I am sitting in class in Delhi right now. Why are you asking? Is everything okay?'"
+      },
+      "actions": [
+        {
+          "id": "act-block-scam",
+          "label": "Tell Rohan, block the scammer & report on WhatsApp",
+          "next": "node-end-safe",
+          "set": { "blockedSender": true, "reported": true },
+          "commentary": "You confirmed your nephew was completely safe and avoided losing ₹15,000.",
+          "safer": true
+        }
+      ],
+      "hints": {
+        "nudge": "You verified the truth! Now block the imposter.",
+        "explain": "Direct phone verification prevents 99% of family impersonation scams.",
+        "showMe": "Tap 'Tell Rohan, block the scammer & report on WhatsApp'."
+      }
+    },
+    {
+      "id": "node-msg-challenge",
+      "app": "messages",
+      "title": "WhatsApp Message",
+      "thread": {
+        "contact": "Unknown (+91-97210XXXXX)",
+        "messages": [
+          {
+            "from": "You",
+            "body": "What was the name of our pet dog in Nainital last summer?",
+            "time": "2:32 PM"
+          },
+          {
+            "from": "+91-97210XXXXX",
+            "body": "Uncle why are you asking silly questions! Police are taking my license right now, please send money fast!!",
+            "time": "2:33 PM"
+          }
+        ]
+      },
+      "actions": [
+        {
+          "id": "act-reject-challenge",
+          "label": "The sender deflected the question — block and call family",
+          "next": "node-end-safe",
+          "set": { "blockedSender": true },
+          "commentary": "The sender could not answer your security question, exposing the scam.",
+          "safer": true
+        }
+      ],
+      "hints": {
+        "nudge": "Notice how they got angry and pressured you instead of answering.",
+        "explain": "Imposters cannot answer specific childhood or family trivia.",
+        "showMe": "Tap 'The sender deflected the question — block and call family'."
+      }
+    },
+    {
+      "id": "node-bank-pay",
+      "app": "bank",
+      "title": "Nova Bank UPI",
+      "screen": {
+        "heading": "Payment Sent: ₹15,000",
+        "body": "Transferred to police-settlement@swiftpay (Account Holder: Dinesh Kumar). Balance remaining: ₹8,420."
+      },
+      "actions": [
+        {
+          "id": "act-loss",
+          "label": "View outcome and recovery guide",
+          "next": "node-end-compromised",
+          "commentary": "Money was transferred to an imposter account.",
+          "safer": false
+        }
+      ],
+      "hints": {
+        "nudge": "Notice the account holder name is an individual person, not a police station.",
+        "explain": "Government departments never collect fines into individual bank accounts via personal UPI.",
+        "showMe": "Tap 'View outcome and recovery guide'."
+      }
+    },
+    {
+      "id": "node-end-safe",
+      "app": "phone",
+      "title": "Safe Outcome",
+      "end": "safe",
+      "actions": [],
+      "hints": { "nudge": "Safe", "explain": "Safe", "showMe": "Safe" }
+    },
+    {
+      "id": "node-end-compromised",
+      "app": "bank",
+      "title": "Compromised (Simulated)",
+      "end": "compromised",
+      "actions": [],
+      "hints": { "nudge": "Compromised", "explain": "Compromised", "showMe": "Compromised" }
+    }
+  ],
+  "saferChoices": [
+    "Always institute a family 'safe word' or verify on the person's existing contact number.",
+    "Never accept excuses like 'My phone broke so don't call me' without independent third-party confirmation.",
+    "Police and government entities never settle fines over personal UPI handles."
+  ],
+  "recoverySteps": [
+    "Call 1930 immediately to freeze the recipient bank account before the money is withdrawn at an ATM.",
+    "File an FIR on the National Cyber Crime portal (cybercrime.gov.in) with WhatsApp chat screenshots.",
+    "Inform your bank nodal officer of the UPI transaction ID (UTR number)."
+  ]
+}

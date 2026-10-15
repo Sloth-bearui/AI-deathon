@@ -308,5 +308,181 @@
         "date": "2026-10-05T07:50:00Z"
       }
     ]
+  },
+  {
+    "id": "post-011",
+    "title": "TRAI allocates dedicated 1600-series mobile prefix for official bank calls to halt caller ID spoofing",
+    "claim": "TRAI has mandated that all commercial transactional calls from banks and regulated financial institutions must originate from numbers starting with '1600'.",
+    "content": "Official Circular from TRAI & RBI: Beginning late 2026, all legitimate voice calls regarding OTPs, KYC, or fraud alerts from scheduled commercial banks will use the designated '1600' series. Any regular 10-digit number claiming to be your bank is unverified.",
+    "type": "text",
+    "status": "well-supported",
+    "sourcePlatform": "twitter",
+    "language": "en",
+    "contributorId": "contrib-001",
+    "dateSubmitted": "2026-10-15T09:00:00Z",
+    "relevanceScore": 92,
+    "factors": {
+      "evidence": 95,
+      "source": 94,
+      "corroboration": 90,
+      "reproducibility": 88
+    },
+    "tags": ["banking", "trai", "rbi", "cybersecurity", "verified-news"],
+    "comments": [
+      {
+        "id": "com-011",
+        "contributorId": "contrib-002",
+        "content": "Verified on trai.gov.in Gazette publication dated Oct 2026. This is authentic regulatory policy.",
+        "date": "2026-10-15T09:30:00Z",
+        "type": "evidence"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "ev-011",
+        "contributorId": "contrib-001",
+        "type": "supporting",
+        "title": "TRAI Gazette Notification on 1600-series prefix allocation",
+        "description": "Telecom Regulatory Authority of India (TRAI) issued directional orders to telecom service providers allocating the 1600-series numbering plan solely to RBI and SEBI regulated entities.",
+        "sourceUrl": "https://trai.gov.in/notifications/press-releases",
+        "date": "2026-10-15T09:15:00Z"
+      }
+    ]
+  },
+  {
+    "id": "post-012",
+    "title": "RBI & NPCI roll out interoperable QR codes connecting Digital Rupee (CBDC) with UPI",
+    "claim": "Citizens can now scan any standard merchant UPI QR code across India to pay directly using their official RBI Digital Rupee (e₹) wallet.",
+    "content": "RBI Press Release: In an interoperability breakthrough, NPCI has enabled standard UPI QR codes to accept Central Bank Digital Currency (CBDC) e₹ payments without requiring merchants to deploy separate QR codes.",
+    "type": "text",
+    "status": "well-supported",
+    "sourcePlatform": "website",
+    "language": "en",
+    "contributorId": "contrib-003",
+    "dateSubmitted": "2026-10-14T11:00:00Z",
+    "relevanceScore": 94,
+    "factors": {
+      "evidence": 96,
+      "source": 95,
+      "corroboration": 92,
+      "reproducibility": 92
+    },
+    "tags": ["rbi", "digital-rupee", "cbdc", "upi", "verified-news"],
+    "comments": [
+      {
+        "id": "com-012",
+        "contributorId": "contrib-001",
+        "content": "Tested on my banking CBDC app. It seamlessly scanned a merchant BharatPe UPI code and deducted e₹ tokens.",
+        "date": "2026-10-14T11:45:00Z",
+        "type": "evidence"
+      }
+    ],
+    "evidence": [
+      {
+        "id": "ev-012",
+        "contributorId": "contrib-003",
+        "type": "supporting",
+        "title": "RBI Central Bank Digital Currency Interoperability Circular",
+        "description": "The Reserve Bank of India announced that commercial bank CBDC wallet apps have integrated UPI rail interoperability.",
+        "sourceUrl": "https://rbi.org.in/press-releases/cbdc-upi-qr",
+        "date": "2026-10-14T11:20:00Z"
+      }
+    ]
+  },
+  {
+    "id": "post-013",
+    "title": "Government launches Sanchar Saathi CEIR portal allowing citizens to block stolen mobile phones nationwide",
+    "claim": "The Department of Telecommunications (DoT) allows citizens across all Indian states to instantly block and track stolen or lost smartphones using the Central Equipment Identity Register (CEIR).",
+    "content": "Official Announcement: Citizens who lose their mobile phone can now visit sancharsaathi.gov.in, enter their police complaint and IMEI number, to render the stolen device inoperable across all Indian telecom networks.",
+    "type": "text",
+    "status": "well-supported",
+    "sourcePlatform": "whatsapp",
+    "language": "en",
+    "contributorId": "contrib-002",
+    "dateSubmitted": "2026-10-13T10:00:00Z",
+    "relevanceScore": 96,
+    "factors": {
+      "evidence": 98,
+      "source": 96,
+      "corroboration": 95,
+      "reproducibility": 94
+    },
+    "tags": ["sanchar-saathi", "dot", "ceir", "mobile-security", "verified-news"],
+    "comments": [],
+    "evidence": [
+      {
+        "id": "ev-013",
+        "contributorId": "contrib-002",
+        "type": "supporting",
+        "title": "DoT Sanchar Saathi Official Portal Release",
+        "description": "Department of Telecommunications confirmed CEIR has blocked over 1.4 million lost/stolen handsets across India.",
+        "sourceUrl": "https://sancharsaathi.gov.in",
+        "date": "2026-10-13T10:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "post-014",
+    "title": "NHAI enforces 'One Vehicle, One FASTag' policy deactivating duplicate tags at toll plazas",
+    "claim": "National Highways Authority of India (NHAI) has phased out multiple FASTags registered to a single vehicle to streamline automated tolling.",
+    "content": "Notice: Under the 'One Vehicle, One FASTag' initiative, only the latest FASTag registered to your vehicle RC will remain operational. Previous duplicate or unlinked FASTags have been blacklisted by IHMCL.",
+    "type": "text",
+    "status": "well-supported",
+    "sourcePlatform": "website",
+    "language": "en",
+    "contributorId": "contrib-001",
+    "dateSubmitted": "2026-10-12T14:00:00Z",
+    "relevanceScore": 89,
+    "factors": {
+      "evidence": 90,
+      "source": 90,
+      "corroboration": 88,
+      "reproducibility": 88
+    },
+    "tags": ["nhai", "fastag", "transport", "verified-news"],
+    "comments": [],
+    "evidence": [
+      {
+        "id": "ev-014",
+        "contributorId": "contrib-001",
+        "type": "supporting",
+        "title": "NHAI Official Press Release on One Vehicle One FASTag",
+        "description": "Ministry of Road Transport and Highways (MoRTH) circular mandating compliance with single tag per chassis number.",
+        "sourceUrl": "https://nhai.gov.in/fastag-guidelines",
+        "date": "2026-10-12T14:15:00Z"
+      }
+    ]
+  },
+  {
+    "id": "post-015",
+    "title": "Indian Railways updates Advance Train Ticket Reservation Period from 120 days to 60 days",
+    "claim": "Ministry of Railways notified that passenger train advance ticket bookings are revised to a 60-day window to reduce ticket hoarding and last-minute cancellations.",
+    "content": "IRCTC & Indian Railways Announcement: The Advance Reservation Period (ARP) for booking train tickets is shortened from 120 days to 60 days (excluding the day of journey). Already booked tickets remain unaffected.",
+    "type": "text",
+    "status": "well-supported",
+    "sourcePlatform": "twitter",
+    "language": "en",
+    "contributorId": "contrib-003",
+    "dateSubmitted": "2026-10-11T16:00:00Z",
+    "relevanceScore": 91,
+    "factors": {
+      "evidence": 93,
+      "source": 92,
+      "corroboration": 90,
+      "reproducibility": 88
+    },
+    "tags": ["railways", "irctc", "travel", "verified-news"],
+    "comments": [],
+    "evidence": [
+      {
+        "id": "ev-015",
+        "contributorId": "contrib-003",
+        "type": "supporting",
+        "title": "Ministry of Railways Commercial Circular on ARP Revision",
+        "description": "Indian Railways gazette order reducing ARP window to 60 days with effect from the designated cutoff date.",
+        "sourceUrl": "https://indianrailways.gov.in/railwayboard",
+        "date": "2026-10-11T16:20:00Z"
+      }
+    ]
   }
 ]

@@ -1,60 +1,44 @@
 import React from 'react';
 
 interface ProgressRingProps {
-  value?: number;
-  progress?: number;
-  max?: number;
+  /** 0–1 */
+  value: number;
   size?: number;
-  strokeWidth?: number;
-  color?: string;
-  label?: string;
-  className?: string;
+  stroke?: number;
+  children?: React.ReactNode;
+  label: string;
+  colorVar?: string;
 }
 
-export const ProgressRing: React.FC<ProgressRingProps> = ({
-  value,
-  progress,
-  max = 100,
-  size = 80,
-  strokeWidth = 6,
-  color = '#2DD4BF',
-  label,
-  className,
-}) => {
-  const val = value ?? progress ?? 0;
-  const radius = (size - strokeWidth) / 2;
-  const circumference = 2 * Math.PI * radius;
-  const percent = Math.min(val / max, 1);
-  const offset = circumference * (1 - percent);
-
+/** Hand-built SVG ring. Generic primitive (e.g. task progress); carries no grading meaning. */
+export const ProgressRing: React.FC<ProgressRingProps> = ({ value, size = 96, stroke = 8, children, label, colorVar = '--c-accent' }) => {
+  const r = (size - stroke) / 2;
+  const c = 2 * Math.PI * r;
+  const v = Math.max(0, Math.min(1, value));
   return (
-    <div className={`inline-flex flex-col items-center gap-1 ${className || ''}`}>
-      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="-rotate-90" aria-label={`${Math.round(percent * 100)}%`}>
+    <div className="relative inline-grid place-items-center" style={{ width: size, height: size }} role="img" aria-label={label}>
+      <svg width={size} height={size} className="-rotate-90" aria-hidden>
+        <defs>
+          <linearGradient id={`pr-${size}`} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor={`rgb(var(${colorVar}))`} />
+            <stop offset="100%" stopColor="rgb(var(--c-accent-2))" />
+          </linearGradient>
+        </defs>
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="var(--line)" strokeWidth={stroke} />
         <circle
           cx={size / 2}
           cy={size / 2}
-          r={radius}
+          r={r}
           fill="none"
-          stroke="var(--color-surface)"
-          strokeWidth={strokeWidth}
-        />
-        <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          fill="none"
-          stroke={color}
-          strokeWidth={strokeWidth}
-          strokeDasharray={circumference}
-          strokeDashoffset={offset}
+          stroke={`url(#pr-${size})`}
+          strokeWidth={stroke}
           strokeLinecap="round"
-          className="transition-all duration-700 ease-out"
+          strokeDasharray={c}
+          strokeDashoffset={c * (1 - v)}
+          style={{ transition: 'stroke-dashoffset 700ms cubic-bezier(.2,.8,.2,1)' }}
         />
       </svg>
-      <span className="text-xl font-heading font-semibold" style={{ color }}>
-        {Math.round(val)}%
-      </span>
-      {label && <span className="text-xs text-[var(--color-text-muted)]">{label}</span>}
+      <div className="absolute inset-0 grid place-items-center">{children}</div>
     </div>
   );
 };

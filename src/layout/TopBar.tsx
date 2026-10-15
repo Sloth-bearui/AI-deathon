@@ -1,57 +1,50 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Settings, Menu } from 'lucide-react';
+import { Type, Settings } from 'lucide-react';
+import { Modal } from '@/design-system';
 import { AccessibilityBar } from './AccessibilityBar';
-import { cn } from '@/utils/cn';
+import { Logo } from './Sidebar';
 
-export const TopBar: React.FC = () => {
+/** Sticky top bar. Desktop: inline accessibility toolbar. Mobile: logo + "Display" sheet + settings. */
+export const TopBar: React.FC<{ onOpenSettings: () => void }> = ({ onOpenSettings }) => {
   const { t } = useTranslation();
-  const [showAccessibility, setShowAccessibility] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
-    <>
-      <header className="sticky top-0 z-20 glass border-b border-[var(--glass-border)]">
-        <div className="flex items-center justify-between px-4 lg:px-6 h-14">
-          {/* Mobile logo */}
-          <div className="flex items-center gap-2 lg:hidden">
-            <div className="w-8 h-8">
-              <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M32 4 L56 18 L56 46 L32 60 L8 46 L8 18 Z" stroke="#2DD4BF" strokeWidth="2.5" fill="none" opacity="0.9"/>
-                <circle cx="30" cy="28" r="12" stroke="#2DD4BF" strokeWidth="2.5" fill="none"/>
-                <line x1="39" y1="37" x2="48" y2="46" stroke="#2DD4BF" strokeWidth="2.5" strokeLinecap="round"/>
-                <polyline points="24,28 28,33 36,23" stroke="#34D399" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <span className="font-heading font-bold text-sm">{t('app_name')}</span>
-          </div>
+    <header className="sticky top-0 z-30 px-3 pt-3 lg:px-6">
+      <div className="glass flex items-center justify-between gap-3 rounded-[22px] px-3 py-2 lg:justify-end lg:border-transparent lg:bg-transparent lg:shadow-none lg:backdrop-blur-0">
+        <Link to="/" className="rounded-xl px-1 lg:hidden" aria-label={`${t('app.name')} — ${t('nav.home')}`}>
+          <Logo compact />
+        </Link>
 
-          {/* Desktop: show page title area or spacer */}
-          <div className="hidden lg:block" />
+        <div className="hidden lg:block">
+          <AccessibilityBar />
+        </div>
 
-          {/* Accessibility toggle */}
+        <div className="flex items-center gap-1 lg:hidden">
           <button
-            onClick={() => setShowAccessibility(!showAccessibility)}
-            className={cn(
-              'flex items-center gap-2 px-3 py-2 rounded-button text-sm transition-colors min-h-[44px]',
-              showAccessibility
-                ? 'bg-accent/15 text-accent'
-                : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-hover)]'
-            )}
-            aria-label={t('nav.settings')}
-            aria-expanded={showAccessibility}
+            type="button"
+            data-tour="a11y"
+            onClick={() => setOpen(true)}
+            className="inline-flex min-h-[48px] items-center gap-2 rounded-xl px-3 font-heading font-semibold text-ink hover:bg-hover"
           >
-            <Settings size={20} />
-            <span className="hidden sm:inline">{t('nav.settings')}</span>
+            <Type className="h-5 w-5" aria-hidden /> {t('a11y.display')}
+          </button>
+          <button
+            type="button"
+            onClick={onOpenSettings}
+            aria-label={t('nav.settings')}
+            className="grid min-h-[48px] min-w-[48px] place-items-center rounded-xl text-ink-2 hover:bg-hover hover:text-ink"
+          >
+            <Settings className="h-6 w-6" aria-hidden />
           </button>
         </div>
-      </header>
+      </div>
 
-      {/* Accessibility panel */}
-      {showAccessibility && (
-        <div className="animate-slide-down">
-          <AccessibilityBar onClose={() => setShowAccessibility(false)} />
-        </div>
-      )}
-    </>
+      <Modal open={open} onOpenChange={setOpen} title={t('a11y.display')} variant="sheet" size="sm">
+        <AccessibilityBar layout="stack" />
+      </Modal>
+    </header>
   );
 };

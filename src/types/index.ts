@@ -1,185 +1,247 @@
-// ===== Core Types for Reality Check =====
+// ===== Reality Check — shared types =====
+// Shapes mirror what a future REST/GraphQL backend would return, so mockApi.ts
+// can be swapped for real fetch calls without touching UI code.
 
-// === Community / Posts ===
+export type Lang = 'en' | 'hi';
+
+// ---------- Community ----------
 export type PostType = 'text' | 'image' | 'video' | 'forward';
-export type PostStatus = 'unverified' | 'investigating' | 'verified' | 'misleading' | 'needs-evidence';
-export type InvestigationStatus = 'well-supported' | 'needs-more-evidence' | 'potentially-misleading' | 'contradicted';
+export type Platform = 'whatsapp' | 'facebook' | 'x' | 'youtube' | 'telegram' | 'instagram' | 'website' | 'sms';
+
+/** Investigation status shown on the evidence report. */
+export type ReportStatus =
+  | 'well-supported'
+  | 'needs-more-evidence'
+  | 'potentially-misleading'
+  | 'contradicted'
+  | 'not-investigated';
+
+export interface FactorScores {
+  /** each 0–100 */
+  evidence: number;
+  source: number;
+  corroboration: number;
+  reproducibility: number;
+}
+
+export type RelevanceBand =
+  | 'well-supported'
+  | 'partly-supported'
+  | 'weakly-supported'
+  | 'unsupported'
+  | 'not-enough-evidence';
+
+export interface ScoreEvent {
+  id: string;
+  date: string;
+  /** score after this event, or null when not enough evidence */
+  score: number | null;
+  reason: string;
+  /** factor deltas applied by a defined rule */
+  delta?: Partial<FactorScores>;
+}
+
+export type EvidenceStance = 'supports' | 'contradicts' | 'context';
+export type SourceKind = 'official' | 'established-media' | 'fact-checker' | 'archive' | 'eyewitness' | 'social' | 'unknown';
+
+export interface EvidenceItem {
+  id: string;
+  postId: string;
+  contributorId: string;
+  stance: EvidenceStance;
+  title: string;
+  summary: string;
+  sourceName: string;
+  sourceUrl?: string;
+  sourceKind: SourceKind;
+  /** true when the evidence came from the simulated investigation, not a person */
+  simulated?: boolean;
+  date: string;
+}
+
+export type CommentKind = 'comment' | 'correction' | 'question';
+export interface Comment {
+  id: string;
+  postId: string;
+  contributorId: string;
+  kind: CommentKind;
+  body: string;
+  /** links the comment to a specific evidence item */
+  evidenceId?: string;
+  date: string;
+}
 
 export interface Post {
   id: string;
+  type: PostType;
+  platform: Platform;
+  language: Lang;
   title: string;
   claim: string;
+  /** the original message / caption as received */
   content: string;
-  type: PostType;
-  status: PostStatus;
-  mediaUrl?: string;
-  mediaSvg?: string;
+  media?: string;          // path in /public/media
+  mediaAlt?: string;
   sourceUrl?: string;
-  sourcePlatform?: 'whatsapp' | 'twitter' | 'facebook' | 'telegram' | 'youtube' | 'website' | 'other';
-  language: 'en' | 'hi';
   contributorId: string;
-  dateSubmitted: string;
-  dateUpdated?: string;
-  relevanceScore?: number;
-  investigationId?: string;
+  date: string;
   tags: string[];
-  comments: Comment[];
-  evidence: Evidence[];
-  saved?: boolean;
+  status: ReportStatus;
+  /** null = "Not enough evidence yet" */
+  factors: FactorScores | null;
+  scoreHistory: ScoreEvent[];
+  investigationId?: string;
+  /** user-submitted (local only) */
+  local?: boolean;
 }
 
-export interface Comment {
-  id: string;
-  contributorId: string;
-  content: string;
-  date: string;
-  type: 'comment' | 'evidence' | 'correction';
-}
-
-export interface Evidence {
-  id: string;
-  contributorId: string;
-  type: 'supporting' | 'contradicting' | 'contextual';
-  title: string;
-  description: string;
-  sourceUrl?: string;
-  date: string;
-}
-
-// === Relevance Score (community only) ===
-export interface RelevanceBreakdown {
-  evidenceStrength: number;    // 0-100, weight 35%
-  sourceCredibility: number;   // 0-100, weight 30%
-  corroboration: number;       // 0-100, weight 20%
-  reproducibility: number;     // 0-100, weight 15%
-}
-
-export interface ScoreHistoryEntry {
-  date: string;
-  score: number;
-  reason: string;
-}
-
-export type RelevanceBand = 'well-supported' | 'partly-supported' | 'weakly-supported' | 'unsupported' | 'not-enough-evidence';
-
-// === Contributors ===
-export type ReliabilityLevel = 'new' | 'developing' | 'established';
+export type ReliabilityDescriptor = 'new' | 'developing' | 'established';
 
 export interface Contributor {
   id: string;
   name: string;
-  joinDate: string;
-  avatarColor: string;
-  reportsReviewed: number;
-  corroboratedLater: number;
-  totalContributions: number;
-  reliabilityLevel: ReliabilityLevel;
+  handle: string;
+  city: string;
+  joined: string;
   bio: string;
-  contributions: ContributionEntry[];
+  avatarHue: number;
+  reportsReviewed: number;
+  laterCorroborated: number;
+  descriptor: ReliabilityDescriptor;
+  focusAreas: string[];
 }
 
-export interface ContributionEntry {
+export interface Contribution {
   id: string;
+  contributorId: string;
   postId: string;
-  type: 'submitted' | 'evidence' | 'comment' | 'investigation';
-  title: string;
+  kind: 'submitted' | 'evidence' | 'correction' | 'comment';
+  summary: string;
   date: string;
 }
 
-// === Investigations ===
+// ---------- Investigation (simulated) ----------
+export type StepKey = 'claim' | 'reverse-image' | 'metadata' | 'source-trace' | 'fact-check' | 'archive';
+export type FindingTone = 'supports' | 'contradicts' | 'neutral' | 'inconclusive';
+
 export interface InvestigationStep {
-  id: string;
-  name: string;
+  key: StepKey;
+  label: string;
   description: string;
-  status: 'pending' | 'running' | 'complete' | 'skipped';
-  finding?: string;
-  findingType?: 'supporting' | 'contradicting' | 'neutral' | 'inconclusive';
-  sources?: string[];
-  duration?: number;
+  finding: string;
+  tone: FindingTone;
+  sources?: { name: string; url?: string }[];
+}
+
+export interface SourceRow {
+  source: string;
+  kind: SourceKind;
+  date: string;
+  says: string;
+  matchesClaim: 'yes' | 'no' | 'partly' | 'unclear';
+}
+
+export interface TimelineEvent {
+  date: string;
+  label: string;
 }
 
 export interface Investigation {
   id: string;
   postId: string;
-  claim: string;
-  status: InvestigationStatus;
-  dateStarted: string;
-  dateCompleted?: string;
+  extractedClaims: string[];
   steps: InvestigationStep[];
+  sourceComparison: SourceRow[];
+  timeline: TimelineEvent[];
   summary: string;
+  status: ReportStatus;
   limitations: string[];
-  recommendedSteps: string[];
-  disclaimer: string;
+  nextSteps: string[];
+  /** evidence created when the simulation runs */
+  evidence: Omit<EvidenceItem, 'id' | 'postId' | 'date' | 'contributorId'>[];
+  /** factor changes applied once, by rule "investigation-complete" */
+  factorDelta: Partial<FactorScores>;
 }
 
-// === Academy ===
-export type LabCategory = 'scam-awareness' | 'digital-banking' | 'ai-media' | 'device-security' | 'ai-literacy';
+// ---------- Academy ----------
+export type LabCategory = 'scams' | 'banking' | 'ai-media' | 'device' | 'ai-literacy';
 
 export interface Lab {
   id: string;
+  slug: string;
   title: string;
+  summary: string;
   description: string;
   category: LabCategory;
-  estimatedMinutes: number;
+  minutes: number;
   icon: string;
-  completed?: boolean;
-  lessons: Lesson[];
+  /** component key in labs/registry */
+  component: string;
+  objectives: string[];
+  checklist: string[];
+  reflection: string[];
 }
 
-export interface Lesson {
-  id: string;
-  title: string;
-  type: 'intro' | 'interactive' | 'reflection' | 'checklist';
-  content: string;
+// ---------- Phone simulator ----------
+export type AppId = 'messages' | 'browser' | 'bank' | 'settings' | 'phone' | 'home' | 'lock';
+export type Difficulty = 'gentle' | 'standard';
+export type Outcome = 'safe' | 'recovered' | 'compromised';
+
+export interface ScenarioFlags {
+  sharedOtp?: boolean;
+  tappedLink?: boolean;
+  checkedSender?: boolean;
+  installedApp?: boolean;
+  enteredPin?: boolean;
+  reported?: boolean;
+  calledBank?: boolean;
+  blockedSender?: boolean;
+  [k: string]: boolean | undefined;
 }
 
-// === Phone Simulator ===
-export type ScenarioDifficulty = 'gentle' | 'standard';
-export type ScenarioOutcome = 'safe' | 'recovered' | 'compromised';
-
-export interface Scenario {
-  id: string;
-  title: string;
-  description: string;
-  difficulty: ScenarioDifficulty;
-  category: string;
-  startNodeId: string;
-  nodes: ScenarioNode[];
-}
-
-export interface ScenarioNode {
-  id: string;
-  type: 'notification' | 'message' | 'browser' | 'bank' | 'call' | 'settings' | 'outcome';
-  app?: string;
-  content: NodeContent;
-  actions: ScenarioAction[];
-  flags?: Record<string, boolean>;
-}
-
-export interface NodeContent {
-  title?: string;
+export interface ScenarioMessage {
+  from: string;
   body: string;
-  sender?: string;
-  url?: string;
-  image?: string;
-  metadata?: Record<string, string>;
+  time: string;
+  /** visual hints the coach can highlight */
+  redFlags?: string[];
 }
 
 export interface ScenarioAction {
   id: string;
   label: string;
-  nextNodeId: string;
-  isSafe?: boolean;
-  flagsSet?: Record<string, boolean>;
-  commentary?: string;
+  next: string;
+  set?: ScenarioFlags;
+  commentary: string;
+  safer?: boolean;
 }
 
-// === Preferences ===
-export interface UserPrefs {
-  theme: 'dark' | 'light';
-  textScale: number;
-  calmMode: boolean;
-  language: 'en' | 'hi';
-  welcomeCompleted: boolean;
-  version: number;
+export interface ScenarioNode {
+  id: string;
+  app: AppId;
+  title?: string;
+  /** for messages app */
+  thread?: { contact: string; number?: string; messages: ScenarioMessage[] };
+  /** for browser */
+  page?: { url: string; secure: boolean; heading: string; body: string; fields?: string[] };
+  /** for bank / settings / phone screens */
+  screen?: { heading: string; body: string; items?: string[] };
+  notification?: { app: AppId; from: string; body: string };
+  actions: ScenarioAction[];
+  hints: { nudge: string; explain: string; showMe: string };
+  /** terminal node */
+  end?: Outcome;
+}
+
+export interface Scenario {
+  id: string;
+  title: string;
+  summary: string;
+  difficulty: Difficulty;
+  minutes: number;
+  status: 'ready' | 'outline';
+  start: string;
+  nodes: ScenarioNode[];
+  saferChoices: string[];
+  recoverySteps: string[];
 }

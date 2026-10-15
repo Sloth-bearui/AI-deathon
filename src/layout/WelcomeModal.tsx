@@ -1,78 +1,73 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { usePrefsStore } from '@/store/usePrefsStore';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import * as Dialog from '@radix-ui/react-dialog';
+import { Check, ArrowRight } from 'lucide-react';
 import { Button } from '@/design-system';
+import { usePrefsStore } from '@/store/usePrefsStore';
+import { cn } from '@/utils/cn';
+import { LogoMark } from './Sidebar';
 
-const SCALES = [0.85, 1, 1.15, 1.3, 1.5];
-const SCALE_LABELS = ['Small', 'Default', 'Large', 'Larger', 'Largest'];
+const OPTIONS = [
+  { scale: 1, key: 'small', sample: 'Aa' },
+  { scale: 1.3, key: 'medium', sample: 'Aa' },
+  { scale: 1.5, key: 'large', sample: 'Aa' },
+] as const;
 
+/** First-run welcome: pick a comfortable text size with a live preview. */
 export const WelcomeModal: React.FC = () => {
-  const { welcomeCompleted, completeWelcome, setTextScale } = usePrefsStore();
-  const [selectedScale, setSelectedScale] = useState(1);
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const done = usePrefsStore((s) => s.welcomeDone);
+  const setDone = usePrefsStore((s) => s.setWelcomeDone);
+  const scale = usePrefsStore((s) => s.textScale);
+  const setScale = usePrefsStore((s) => s.setTextScale);
 
-  if (welcomeCompleted) return null;
+  const finish = () => { setDone(true); navigate('/'); };
 
   return (
-    <AnimatePresence>
-      <motion.div
-        className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      >
-        <motion.div
-          className="glass rounded-glass p-8 max-w-md w-full text-center"
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.1, type: 'spring', damping: 20 }}
-        >
-          {/* Logo */}
-          <div className="w-16 h-16 mx-auto mb-6">
-            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M32 4 L56 18 L56 46 L32 60 L8 46 L8 18 Z" stroke="#2DD4BF" strokeWidth="2.5" fill="none" opacity="0.9"/>
-              <circle cx="30" cy="28" r="12" stroke="#2DD4BF" strokeWidth="2.5" fill="none"/>
-              <line x1="39" y1="37" x2="48" y2="46" stroke="#2DD4BF" strokeWidth="2.5" strokeLinecap="round"/>
-              <polyline points="24,28 28,33 36,23" stroke="#34D399" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+    <Dialog.Root open={!done} onOpenChange={(o) => !o && finish()}>
+      <Dialog.Portal>
+        <Dialog.Overlay className="rc-overlay fixed inset-0 z-[150] bg-[rgb(3_7_18/0.75)] backdrop-blur-md" />
+        <Dialog.Content className="glass-strong rc-pop fixed left-1/2 top-1/2 z-[160] max-h-[94dvh] w-[min(94vw,620px)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-[28px] p-6 sm:p-9">
+          <div className="mb-5 flex items-center gap-3">
+            <LogoMark size={52} />
+            <span className="eyebrow">{t('app.tagline')}</span>
+          </div>
+          <Dialog.Title className="font-heading text-3xl font-bold leading-tight">{t('welcome.title')}</Dialog.Title>
+          <Dialog.Description className="mt-2 text-lg text-ink-2">{t('welcome.body')}</Dialog.Description>
+
+          <div role="radiogroup" aria-label={t('a11y.textSize')} className="mt-6 grid grid-cols-3 gap-3">
+            {OPTIONS.map((o) => {
+              const active = Math.abs(scale - o.scale) < 0.01;
+              return (
+                <button
+                  key={o.key}
+                  role="radio"
+                  aria-checked={active}
+                  onClick={() => setScale(o.scale)}
+                  className={cn(
+                    'relative flex min-h-[112px] flex-col items-center justify-center gap-1 rounded-2xl border-2 p-3 transition-all',
+                    active ? 'border-accent bg-accent/12 shadow-glow' : 'border-line bg-surface/50 hover:border-accent/50',
+                  )}
+                >
+                  {active && <Check className="absolute right-2 top-2 h-5 w-5 text-accent-ink" aria-hidden />}
+                  <span className="font-heading font-bold" style={{ fontSize: `${o.scale * 1.6}rem`, lineHeight: 1 }} aria-hidden>{o.sample}</span>
+                  <span className="text-sm font-semibold">{t(`welcome.${o.key}`)}</span>
+                </button>
+              );
+            })}
           </div>
 
-          <h2 className="font-heading text-2xl font-bold mb-2">Welcome to Reality Check</h2>
-          <p className="text-[var(--color-text-secondary)] mb-8">
-            Pick a text size that feels comfortable. You can always change this later.
-          </p>
-
-          {/* Text size selector */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
-            {SCALES.map((scale, i) => (
-              <button
-                key={scale}
-                onClick={() => {
-                  setSelectedScale(scale);
-                  setTextScale(scale);
-                }}
-                className={`px-4 py-3 rounded-card transition-all duration-200 min-h-[56px] ${
-                  selectedScale === scale
-                    ? 'bg-accent/20 text-accent border border-accent/30'
-                    : 'bg-[var(--color-surface)] text-[var(--color-text-secondary)] border border-transparent hover:border-[var(--color-border)]'
-                }`}
-                style={{ fontSize: `${scale}rem` }}
-              >
-                {SCALE_LABELS[i]}
-              </button>
-            ))}
+          <div className="mt-5 rounded-2xl border border-line bg-surface/50 p-5" aria-live="polite">
+            <p className="text-lg">{t('welcome.preview')}</p>
           </div>
 
-          {/* Preview */}
-          <div className="glass rounded-card p-4 mb-8 text-left">
-            <p className="text-sm text-[var(--color-text-muted)] mb-1">Preview:</p>
-            <p>This is how text will look at your chosen size.</p>
-          </div>
-
-          <Button size="lg" className="w-full" onClick={completeWelcome}>
-            Get started
+          <Button className="mt-6" size="lg" fullWidth iconRight={<ArrowRight />} onClick={finish}>
+            {t('welcome.continue')}
           </Button>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 };

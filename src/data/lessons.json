@@ -1,0 +1,212 @@
+[
+  {
+    "labId": "lab-001",
+    "lessons": [
+      {
+        "id": "l-001",
+        "title": "What is Phishing?",
+        "type": "intro",
+        "content": "Phishing is a deceptive technique where attackers impersonate trusted institutions—such as your bank, courier service, or government agency—to trick you into disclosing confidential information. In India, common formats include SMS (smishing) and WhatsApp forwards claiming account deactivations or urgent parcel delivery issues."
+      },
+      {
+        "id": "l-002",
+        "title": "Deconstructing Sender Headers",
+        "type": "interactive",
+        "content": "Legitimate Indian commercial entities utilize registered alphanumeric SMS headers (e.g., AD-HDFCBK or VM-AIRTEL) authorized by TRAI. Scammers frequently operate using standard 10-digit personal mobile numbers or SIM-box aggregators (+91-98...)."
+      },
+      {
+        "id": "l-003",
+        "title": "Inspecting Deceptive Domain Names",
+        "type": "interactive",
+        "content": "Examine the URL carefully before clicking. Look at the domain suffix immediately before the first single slash. Real: 'novabank.co.in/login'. Fake: 'novabank.co.in.login-portal.site/verify'. The real destination domain is always the text preceding the primary top-level domain."
+      },
+      {
+        "id": "l-004",
+        "title": "Psychological Triggers & Urgency",
+        "type": "reflection",
+        "content": "Scammers deliberately induce anxiety with deadlines ('within 24 hours', 'immediate action required'). When you feel a sudden surge of panic from a digital message, pause for 60 seconds. Genuine institutions do not suspend critical services without formal prior notice."
+      },
+      {
+        "id": "l-005",
+        "title": "Personal Phishing Defense Checklist",
+        "type": "checklist",
+        "content": "1. Verify sender headers against TRAI alphanumeric registries.\n2. Never tap links inside SMS demanding immediate account verification.\n3. Always type the verified institution website address manually into your browser.\n4. Remember: Banks never request debit card CVV numbers or ATM PINs over text message."
+      }
+    ]
+  },
+  {
+    "labId": "lab-002",
+    "lessons": [
+      {
+        "id": "l-006",
+        "title": "Understanding UPI Mechanics",
+        "type": "intro",
+        "content": "UPI (Unified Payments Interface) revolutionized digital payments across India. However, the golden rule remains absolute: Entering your UPI PIN is ONLY required to SEND money, never to RECEIVE money. Anyone asking you to enter your PIN to claim a refund or payment is attempting fraud."
+      },
+      {
+        "id": "l-007",
+        "title": "The 'Collect Request' Trap",
+        "type": "interactive",
+        "content": "A scammer on an online marketplace offers to buy your second-hand item and claims: 'I am sending a payment request, just tap approve and enter your PIN to deposit money into your account.' In reality, tapping Approve with your PIN deducts that amount from your account!"
+      },
+      {
+        "id": "l-008",
+        "title": "The Dynamic QR Code Illusion",
+        "type": "interactive",
+        "content": "Scammers send a QR code graphic via WhatsApp captioned: 'Scan this QR code to claim your cashback of ₹3,000'. Scanning a payment QR code always initiates an outgoing debit transfer. You never need to scan a QR code to receive a payment."
+      },
+      {
+        "id": "l-009",
+        "title": "Identifying Imposter UPI Handles",
+        "type": "reflection",
+        "content": "UPI IDs look like email addresses (e.g., username@bank). Before approving any transaction, inspect the verified merchant name displayed by NPCI on the confirmation screen."
+      },
+      {
+        "id": "l-010",
+        "title": "UPI Safety Checklist",
+        "type": "checklist",
+        "content": "1. UPI PIN is solely for debiting funds; receiving money requires no PIN.\n2. Decline unexpected collect requests instantly.\n3. Never scan QR codes received over chat messages to 'receive refunds'.\n4. Set a daily transaction limit on your primary bank account."
+      }
+    ]
+  },
+  {
+    "labId": "lab-003",
+    "lessons": [
+      {
+        "id": "l-011",
+        "title": "The Mechanics of Deepfakes",
+        "type": "intro",
+        "content": "Synthetic media and deepfakes leverage deep neural networks (such as diffusion models and GANs) to swap faces, clone human voices, or synthesize entirely non-existent events. High-profile examples include manipulated political speeches and fake celebrity investment promotions."
+      },
+      {
+        "id": "l-012",
+        "title": "Detecting Visual Artifacts",
+        "type": "interactive",
+        "content": "AI synthesis models frequently struggle with fine anatomical details. Look closely at hands (irregular finger counts, warped joints), pupil reflections (inconsistent light catchlights in each eye), ear geometry, and unnatural blurring along collar lines and hairlines."
+      },
+      {
+        "id": "l-013",
+        "title": "Voice Cloning & Audio Cadence",
+        "type": "interactive",
+        "content": "Cloned audio voices often lack natural acoustic breathing pauses, regional vocal micro-tremors, and contextual prosody. If a voice message sounds slightly metallic or maintains a flat robotic rhythm, treat it with heightened skepticism."
+      },
+      {
+        "id": "l-014",
+        "title": "Reverse Image & Video Verification",
+        "type": "reflection",
+        "content": "Use open investigative tools (such as Google Lens, TinEye, and InVID WeVerify) to isolate keyframes from suspicious videos and trace where the original media was first uploaded."
+      },
+      {
+        "id": "l-015",
+        "title": "Synthetic Media Verification Checklist",
+        "type": "checklist",
+        "content": "1. Scrutinize ear lobes, spectacles, background text, and eye reflections.\n2. Cross-reference explosive statements with established mainstream press agencies.\n3. Perform a reverse image search on extracted video stills.\n4. Check if the original speaker has published any clarification on their verified social handles."
+      }
+    ]
+  },
+  {
+    "labId": "lab-004",
+    "lessons": [
+      {
+        "id": "l-016",
+        "title": "Mobile Operating System Security",
+        "type": "intro",
+        "content": "Modern smartphones have robust sandboxing that isolates apps from one another. Attackers bypass this protection by tricking users into manually granting dangerous permissions: Accessibility Service, Read SMS, and Install Unknown Apps."
+      },
+      {
+        "id": "l-017",
+        "title": "The Sideloading & APK Danger",
+        "type": "interactive",
+        "content": "When you install an APK file directly from a browser or WhatsApp, Google Play Protect scanning is bypassed. Malicious APKs disguised as 'Electricity Bill Update' or 'Free Government Recharge' silently log keystrokes and intercept one-time passwords."
+      },
+      {
+        "id": "l-018",
+        "title": "Auditing App Permissions",
+        "type": "interactive",
+        "content": "Why does a flashlight app or a calculator need access to your Contacts, Camera, and Microphone? Periodically audit Settings → Privacy → Permission Manager to revoke unnecessary entitlements."
+      },
+      {
+        "id": "l-019",
+        "title": "Critical SIM Swap Defense",
+        "type": "reflection",
+        "content": "If your phone suddenly loses cellular signal in a normally strong area and displays 'No Service / SOS only', contact your telecom operator immediately from another phone. Attackers may have executed a fraudulent SIM replacement to hijack your 2FA OTPs."
+      },
+      {
+        "id": "l-020",
+        "title": "Smartphone Hardening Checklist",
+        "type": "checklist",
+        "content": "1. Keep 'Install Unknown Apps' permanently turned OFF.\n2. Never grant Accessibility permissions to utility apps.\n3. Keep operating system security patches updated automatically.\n4. Set a SIM card PIN to prevent physical SIM misuse if your phone is lost."
+      }
+    ]
+  },
+  {
+    "labId": "lab-005",
+    "lessons": [
+      {
+        "id": "l-021",
+        "title": "How Generative AI Generates Content",
+        "type": "intro",
+        "content": "Large Language Models (LLMs) and image generators are statistical prediction engines. They generate text and images by predicting the most probable next token or pixel pattern based on training data. They do not possess consciousness, moral reasoning, or an inherent sense of factual truth."
+      },
+      {
+        "id": "l-022",
+        "title": "Understanding AI Hallucinations",
+        "type": "interactive",
+        "content": "AI models can fabricate convincing citations, non-existent court judgments, and fictional scientific papers with supreme grammatical confidence. Never rely on an uncorroborated AI response as authoritative proof of an empirical fact."
+      },
+      {
+        "id": "l-023",
+        "title": "AI in Automated Disinformation",
+        "type": "interactive",
+        "content": "Generative AI enables malicious actors to generate thousands of variations of a rumor in dozens of regional languages in seconds. Look for repetitive rhetorical formulas and coordinated automated distribution networks."
+      },
+      {
+        "id": "l-024",
+        "title": "Ethical and Responsible AI Usage",
+        "type": "reflection",
+        "content": "When utilizing AI tools for drafting or learning, always fact-check vital health, legal, and financial guidance against reputable human experts and official government gazettes."
+      },
+      {
+        "id": "l-025",
+        "title": "AI Literacy Best Practices Checklist",
+        "type": "checklist",
+        "content": "1. Treat AI answers as starting drafts, never unverified facts.\n2. Cross-verify citations, names, and statistics independently.\n3. Recognize that AI can hallucinate confident-sounding falsehoods.\n4. Protect privacy: avoid pasting confidential credentials or sensitive medical records into public chatbots."
+      }
+    ]
+  },
+  {
+    "labId": "lab-006",
+    "lessons": [
+      {
+        "id": "l-026",
+        "title": "The Landscape of Scams in India",
+        "type": "intro",
+        "content": "Misinformation and financial fraud in India frequently exploit cultural touchpoints: family filial piety, respect for uniform authority (police, CBI, customs), religious sentiment, and government welfare programs."
+      },
+      {
+        "id": "l-027",
+        "title": "Digital Arrest / Fake Police Extortion",
+        "type": "interactive",
+        "content": "Victims receive a Skype/WhatsApp video call from an imposter in police uniform claiming a parcel containing narcotics was sent in their name to Cambodia. The imposter insists on an immediate 'digital arrest' and bank balance transfer. Reality: The Indian Police and law enforcement NEVER execute arrests or interrogate citizens over video call!"
+      },
+      {
+        "id": "l-028",
+        "title": "Electricity Bill Disconnection Threats",
+        "type": "interactive",
+        "content": "SMS sent at 8:00 PM: 'Dear customer, your electricity power will be disconnected at 9:30 PM due to unpaid bill. Call our officer at +91-98...'. State electricity boards never send disconnection notices from personal mobile numbers with 1-hour deadlines."
+      },
+      {
+        "id": "l-029",
+        "title": "Work-from-Home YouTube Like Scams",
+        "type": "reflection",
+        "content": "Starts on Telegram: You are paid ₹150 for liking 3 YouTube videos. Once trust is established, victims are persuaded to invest in high-yield 'prepaid crypto tasks', leading to substantial losses."
+      },
+      {
+        "id": "l-030",
+        "title": "Master Incident Response Checklist",
+        "type": "checklist",
+        "content": "1. Call 1930 immediately upon any unauthorized bank debit.\n2. Lodge a formal report at cybercrime.gov.in within the 'Golden Hour'.\n3. Remember: Real police officers never conduct video interrogations or demand money deposits.\n4. Warn family members: Share knowledge before someone in your circle falls victim."
+      }
+    ]
+  }
+]

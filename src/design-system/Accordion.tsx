@@ -1,47 +1,36 @@
 import React from 'react';
-import * as RadixAccordion from '@radix-ui/react-accordion';
+import * as RA from '@radix-ui/react-accordion';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/utils/cn';
 
-interface AccordionItem {
-  value?: string;
-  title: string;
+export interface AccordionItemDef {
+  value: string;
+  title: React.ReactNode;
+  icon?: React.ReactNode;
   content: React.ReactNode;
 }
 
 interface AccordionProps {
-  items: AccordionItem[];
+  items: AccordionItemDef[];
+  defaultValue?: string;
   className?: string;
-  type?: 'single' | 'multiple';
 }
 
-export const Accordion: React.FC<AccordionProps> = ({
-  items,
-  className,
-  type = 'single',
-}) => {
-  return (
-    <RadixAccordion.Root type={type} collapsible className={cn('space-y-2', className)}>
-      {items.map((item, index) => (
-        <RadixAccordion.Item
-          key={item.value || `item-${index}`}
-          value={item.value || `item-${index}`}
-          className="glass rounded-card overflow-hidden"
-        >
-          <RadixAccordion.Header>
-            <RadixAccordion.Trigger className="flex items-center justify-between w-full px-5 py-4 text-left font-heading font-medium hover:bg-[var(--color-hover)] transition-colors min-h-[56px] group">
-              {item.title}
-              <ChevronDown
-                size={20}
-                className="shrink-0 ml-2 transition-transform duration-200 group-data-[state=open]:rotate-180"
-              />
-            </RadixAccordion.Trigger>
-          </RadixAccordion.Header>
-          <RadixAccordion.Content className="px-5 pb-4 text-sm text-[var(--color-text-secondary)] data-[state=open]:animate-slide-down data-[state=closed]:animate-slide-up overflow-hidden">
-            {item.content}
-          </RadixAccordion.Content>
-        </RadixAccordion.Item>
-      ))}
-    </RadixAccordion.Root>
-  );
-};
+export const Accordion: React.FC<AccordionProps> = ({ items, defaultValue, className }) => (
+  <RA.Root type="single" collapsible defaultValue={defaultValue} className={cn('space-y-3', className)}>
+    {items.map((it) => (
+      <RA.Item key={it.value} value={it.value} className="overflow-hidden rounded-2xl border border-line bg-surface/50">
+        <RA.Header>
+          <RA.Trigger className="group flex min-h-[56px] w-full items-center gap-3 px-5 py-3 text-left font-heading text-lg font-semibold transition-colors hover:bg-hover/60">
+            {it.icon && <span className="text-accent-ink [&>svg]:h-5 [&>svg]:w-5" aria-hidden>{it.icon}</span>}
+            <span className="flex-1">{it.title}</span>
+            <ChevronDown className="h-5 w-5 shrink-0 text-ink-2 transition-transform duration-200 group-data-[state=open]:rotate-180" aria-hidden />
+          </RA.Trigger>
+        </RA.Header>
+        <RA.Content className="rc-accordion overflow-hidden">
+          <div className="px-5 pb-5 pt-1 text-ink-2">{it.content}</div>
+        </RA.Content>
+      </RA.Item>
+    ))}
+  </RA.Root>
+);

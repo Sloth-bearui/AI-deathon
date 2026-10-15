@@ -1,38 +1,47 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import type { Outcome } from '@/types';
 
 interface SimulatorState {
-  completedScenarios: string[];
-  version: number;
-
-  completeScenario: (scenarioId: string) => void;
-  resetScenario: (scenarioId: string) => void;
-  resetData: () => void;
+  completedScenarioIds: string[];
+  lastActiveScenarioId: string | null;
+  scenarioOutcomes: Record<string, Outcome>;
+  markScenarioCompleted: (id: string, outcome: Outcome) => void;
+  setLastActiveScenario: (id: string) => void;
+  reset: () => void;
 }
 
 export const useSimulatorStore = create<SimulatorState>()(
   persist(
     (set) => ({
-      completedScenarios: [],
-      version: 2,
+      completedScenarioIds: [],
+      lastActiveScenarioId: 'scenario-001',
+      scenarioOutcomes: {},
 
-      completeScenario: (scenarioId) =>
-        set((s) => ({
-          completedScenarios: s.completedScenarios.includes(scenarioId)
-            ? s.completedScenarios
-            : [...s.completedScenarios, scenarioId],
-        })),
+      markScenarioCompleted: (id, outcome) => {
+        set((state) => ({
+          completedScenarioIds: state.completedScenarioIds.includes(id)
+            ? state.completedScenarioIds
+            : [...state.completedScenarioIds, id],
+          scenarioOutcomes: {
+            ...state.scenarioOutcomes,
+            [id]: outcome,
+          },
+        }));
+      },
 
-      resetScenario: (scenarioId) =>
-        set((s) => ({
-          completedScenarios: s.completedScenarios.filter((id) => id !== scenarioId),
-        })),
+      setLastActiveScenario: (id) => set({ lastActiveScenarioId: id }),
 
-      resetData: () => set({ completedScenarios: [] }),
+      reset: () =>
+        set({
+          completedScenarioIds: [],
+          lastActiveScenarioId: 'scenario-001',
+          scenarioOutcomes: {},
+        }),
     }),
     {
       name: 'rc_simulator',
-      version: 2,
+      version: 3,
     }
   )
 );

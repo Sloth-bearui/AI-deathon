@@ -1,109 +1,56 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
+
+/** All colours resolve to CSS variables defined in src/design-system/tokens.css,
+ *  so dark and light themes are designed independently (not inverted). */
+const v = (name: string) => `rgb(var(--c-${name}) / <alpha-value>)`;
 
 const config: Config = {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./index.html', './src/**/*.{ts,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        base: {
-          DEFAULT: '#0B1220',
-          raised: '#111A2E',
-          surface: '#162033',
-          hover: '#1C2A42',
-          border: 'rgba(45, 212, 191, 0.15)',
-        },
-        light: {
-          DEFAULT: '#F7F9FC',
-          raised: '#FFFFFF',
-          surface: '#EDF1F7',
-          hover: '#E2E8F0',
-          border: 'rgba(15, 23, 42, 0.1)',
-        },
-        accent: {
-          DEFAULT: '#2DD4BF',
-          light: '#38BDF8',
-          glow: 'rgba(45, 212, 191, 0.2)',
-        },
-        status: {
-          verified: '#34D399',
-          caution: '#F59E0B',
-          danger: '#F87171',
-          info: '#60A5FA',
-        },
+        bg: v('bg'),
+        raised: v('raised'),
+        surface: v('surface'),
+        hover: v('hover'),
+        ink: { DEFAULT: v('ink'), 2: v('ink-2'), 3: v('ink-3') },
+        accent: { DEFAULT: v('accent'), 2: v('accent-2'), ink: v('accent-ink'), on: v('on-accent') },
+        ok: { DEFAULT: v('ok'), ink: v('ok-ink') },
+        warn: { DEFAULT: v('warn'), ink: v('warn-ink') },
+        bad: { DEFAULT: v('bad'), ink: v('bad-ink') },
+        line: 'var(--line)',
       },
       fontFamily: {
         heading: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
         body: ['"Atkinson Hyperlegible"', 'system-ui', 'sans-serif'],
       },
-      fontSize: {
-        'body': ['1.125rem', { lineHeight: '1.6' }],
-      },
-      borderRadius: {
-        'glass': '20px',
-        'card': '16px',
-        'button': '12px',
-      },
-      backdropBlur: {
-        'glass': '20px',
-      },
-      spacing: {
-        '18': '4.5rem',
-        '22': '5.5rem',
-      },
-      maxWidth: {
-        'reading': '70ch',
-      },
-      animation: {
-        'fade-in': 'fadeIn 0.3s ease-out',
-        'slide-up': 'slideUp 0.3s ease-out',
-        'slide-down': 'slideDown 0.3s ease-out',
-        'scale-in': 'scaleIn 0.2s ease-out',
-        'glow-pulse': 'glowPulse 3s ease-in-out infinite',
-        'scan-line': 'scanLine 2s ease-in-out',
-        'shimmer': 'shimmer 2s ease-in-out infinite',
-        'mesh-drift': 'meshDrift 30s ease-in-out infinite',
+      borderRadius: { glass: '20px', card: '16px', btn: '14px' },
+      maxWidth: { reading: '70ch' },
+      boxShadow: {
+        soft: 'var(--shadow-soft)',
+        lift: 'var(--shadow-lift)',
+        glow: '0 0 0 1px rgb(var(--c-accent) / 0.35), 0 8px 40px -8px rgb(var(--c-accent) / 0.35)',
       },
       keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+        shimmer: { '0%': { backgroundPosition: '-200% 0' }, '100%': { backgroundPosition: '200% 0' } },
+        scan: { '0%': { transform: 'translateY(-100%)' }, '100%': { transform: 'translateY(400%)' } },
+        drift: {
+          '0%,100%': { transform: 'translate3d(0,0,0) scale(1)' },
+          '50%': { transform: 'translate3d(4%,-3%,0) scale(1.08)' },
         },
-        slideUp: {
-          '0%': { opacity: '0', transform: 'translateY(8px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        slideDown: {
-          '0%': { opacity: '0', transform: 'translateY(-8px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        scaleIn: {
-          '0%': { opacity: '0', transform: 'scale(0.95)' },
-          '100%': { opacity: '1', transform: 'scale(1)' },
-        },
-        glowPulse: {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(45, 212, 191, 0.1)' },
-          '50%': { boxShadow: '0 0 40px rgba(45, 212, 191, 0.2)' },
-        },
-        scanLine: {
-          '0%': { transform: 'translateY(-100%)', opacity: '0' },
-          '10%': { opacity: '1' },
-          '90%': { opacity: '1' },
-          '100%': { transform: 'translateY(100%)', opacity: '0' },
-        },
-        shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' },
-        },
-        meshDrift: {
-          '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
-          '33%': { transform: 'translate(30px, -20px) rotate(120deg)' },
-          '66%': { transform: 'translate(-20px, 30px) rotate(240deg)' },
-        },
+        pulseRing: { '0%': { boxShadow: '0 0 0 0 rgb(var(--c-accent) / 0.45)' }, '100%': { boxShadow: '0 0 0 14px rgb(var(--c-accent) / 0)' } },
+      },
+      animation: {
+        shimmer: 'shimmer 1.8s ease-in-out infinite',
+        scan: 'scan 2.4s ease-in-out infinite',
+        drift: 'drift 40s ease-in-out infinite',
+        'drift-slow': 'drift 60s ease-in-out infinite reverse',
+        'pulse-ring': 'pulseRing 1.6s ease-out infinite',
       },
     },
   },
   plugins: [],
-}
+};
 
-export default config
+export default config;
