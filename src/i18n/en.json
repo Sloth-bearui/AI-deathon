@@ -10,18 +10,23 @@
   },
   "home": {
     "welcome": "What would you like to do today?",
-    "check_action": "Check something suspicious",
-    "check_desc": "Submit a claim, message, or image to investigate",
-    "learn_action": "Learn to spot scams",
-    "learn_desc": "Interactive lessons on staying safe online",
-    "practice_action": "Practice on a safe phone",
-    "practice_desc": "Try handling scam scenarios risk-free",
+    "subtitle": "Community-powered verification for the information you receive every day. Check suspicious claims, learn digital safety, and practice spotting scams.",
+    "check_title": "Check Something",
+    "check_desc": "Paste a WhatsApp forward, URL, or suspicious message to get it verified by the community.",
+    "check_cta": "Submit a claim",
+    "learn_title": "Learn Digital Safety",
+    "learn_desc": "Interactive lessons on spotting scams, verifying images, and protecting your accounts.",
+    "learn_cta": "Start learning",
+    "practice_title": "Practice Safely",
+    "practice_desc": "Try handling real-world scam scenarios on a simulated phone — no risk involved.",
+    "practice_cta": "Open practice",
     "continue": "Continue where you left off"
   },
   "community": {
-    "title": "Community",
-    "submit": "Check something",
-    "search": "Search posts...",
+    "title": "Community Feed",
+    "subtitle": "Claims submitted and investigated by the community",
+    "submit_claim": "Check something",
+    "search_placeholder": "Search claims, topics, or keywords...",
     "filter_all": "All",
     "filter_text": "Text",
     "filter_image": "Image",
@@ -32,17 +37,14 @@
   },
   "academy": {
     "title": "Reality Check Academy",
-    "subtitle": "Build your digital safety skills",
+    "subtitle": "Build your digital safety skills — at your own pace",
     "minutes": "{{count}} min",
     "completed": "Completed",
     "start": "Start learning"
   },
-  "practice": {
+  "simulator": {
     "title": "Phone Practice",
-    "subtitle": "Practice handling real-world scam scenarios safely",
-    "ribbon": "This is a practice phone",
-    "gentle": "Gentle",
-    "standard": "Standard"
+    "subtitle": "Practice handling real-world scam scenarios safely on a simulated phone"
   },
   "accessibility": {
     "text_smaller": "Smaller text",
@@ -62,7 +64,7 @@
     "close": "Close",
     "submit": "Submit",
     "cancel": "Cancel",
-    "reset": "Reset demo data",
+    "reset": "Reset",
     "help": "Help me"
   }
 }

@@ -4,7 +4,7 @@ import { ChevronDown } from 'lucide-react';
 import { cn } from '@/utils/cn';
 
 interface AccordionItem {
-  value: string;
+  value?: string;
   title: string;
   content: React.ReactNode;
 }
@@ -22,10 +22,10 @@ export const Accordion: React.FC<AccordionProps> = ({
 }) => {
   return (
     <RadixAccordion.Root type={type} collapsible className={cn('space-y-2', className)}>
-      {items.map((item) => (
+      {items.map((item, index) => (
         <RadixAccordion.Item
-          key={item.value}
-          value={item.value}
+          key={item.value || `item-${index}`}
+          value={item.value || `item-${index}`}
           className="glass rounded-card overflow-hidden"
         >
           <RadixAccordion.Header>
@@ -37,7 +37,7 @@ export const Accordion: React.FC<AccordionProps> = ({
               />
             </RadixAccordion.Trigger>
           </RadixAccordion.Header>
-          <RadixAccordion.Content className="px-5 pb-4 text-[var(--color-text-secondary)] data-[state=open]:animate-slide-down data-[state=closed]:animate-slide-up overflow-hidden">
+          <RadixAccordion.Content className="px-5 pb-4 text-sm text-[var(--color-text-secondary)] data-[state=open]:animate-slide-down data-[state=closed]:animate-slide-up overflow-hidden">
             {item.content}
           </RadixAccordion.Content>
         </RadixAccordion.Item>

@@ -1,72 +1,38 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { ScenarioOutcome } from '@/types';
 
 interface SimulatorState {
-  currentScenarioId: string | null;
-  currentNodeId: string | null;
-  flags: Record<string, boolean>;
-  actionHistory: { nodeId: string; actionId: string; label: string }[];
-  completedScenarios: Record<string, ScenarioOutcome>;
+  completedScenarios: string[];
   version: number;
 
-  startScenario: (scenarioId: string, startNodeId: string) => void;
-  navigateToNode: (nodeId: string, actionId: string, label: string, flags?: Record<string, boolean>) => void;
-  completeScenario: (scenarioId: string, outcome: ScenarioOutcome) => void;
-  resetScenario: () => void;
+  completeScenario: (scenarioId: string) => void;
+  resetScenario: (scenarioId: string) => void;
   resetData: () => void;
 }
 
 export const useSimulatorStore = create<SimulatorState>()(
   persist(
     (set) => ({
-      currentScenarioId: null,
-      currentNodeId: null,
-      flags: {},
-      actionHistory: [],
-      completedScenarios: {},
-      version: 1,
+      completedScenarios: [],
+      version: 2,
 
-      startScenario: (scenarioId, startNodeId) =>
-        set({
-          currentScenarioId: scenarioId,
-          currentNodeId: startNodeId,
-          flags: {},
-          actionHistory: [],
-        }),
-
-      navigateToNode: (nodeId, actionId, label, newFlags) =>
+      completeScenario: (scenarioId) =>
         set((s) => ({
-          currentNodeId: nodeId,
-          flags: { ...s.flags, ...newFlags },
-          actionHistory: [...s.actionHistory, { nodeId: s.currentNodeId!, actionId, label }],
+          completedScenarios: s.completedScenarios.includes(scenarioId)
+            ? s.completedScenarios
+            : [...s.completedScenarios, scenarioId],
         })),
 
-      completeScenario: (scenarioId, outcome) =>
+      resetScenario: (scenarioId) =>
         set((s) => ({
-          completedScenarios: { ...s.completedScenarios, [scenarioId]: outcome },
+          completedScenarios: s.completedScenarios.filter((id) => id !== scenarioId),
         })),
 
-      resetScenario: () =>
-        set({
-          currentScenarioId: null,
-          currentNodeId: null,
-          flags: {},
-          actionHistory: [],
-        }),
-
-      resetData: () =>
-        set({
-          currentScenarioId: null,
-          currentNodeId: null,
-          flags: {},
-          actionHistory: [],
-          completedScenarios: {},
-        }),
+      resetData: () => set({ completedScenarios: [] }),
     }),
     {
       name: 'rc_simulator',
-      version: 1,
+      version: 2,
     }
   )
 );

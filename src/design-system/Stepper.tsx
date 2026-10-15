@@ -3,7 +3,7 @@ import { cn } from '@/utils/cn';
 import { Check } from 'lucide-react';
 
 interface StepperProps {
-  steps: { label: string; description?: string }[];
+  steps: (string | { label: string; description?: string })[];
   currentStep: number;
   className?: string;
 }
@@ -18,6 +18,7 @@ export const Stepper: React.FC<StepperProps> = ({
       {steps.map((step, i) => {
         const isComplete = i < currentStep;
         const isCurrent = i === currentStep;
+        const label = typeof step === 'string' ? step : step.label;
         return (
           <React.Fragment key={i}>
             <div className="flex items-center gap-2">
@@ -37,7 +38,7 @@ export const Stepper: React.FC<StepperProps> = ({
                   isCurrent ? 'text-[var(--color-text)] font-medium' : 'text-[var(--color-text-muted)]'
                 )}
               >
-                {step.label}
+                {label}
               </span>
             </div>
             {i < steps.length - 1 && (

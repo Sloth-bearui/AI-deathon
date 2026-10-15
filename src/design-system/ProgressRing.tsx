@@ -1,7 +1,8 @@
 import React from 'react';
 
 interface ProgressRingProps {
-  value: number;
+  value?: number;
+  progress?: number;
   max?: number;
   size?: number;
   strokeWidth?: number;
@@ -12,6 +13,7 @@ interface ProgressRingProps {
 
 export const ProgressRing: React.FC<ProgressRingProps> = ({
   value,
+  progress,
   max = 100,
   size = 80,
   strokeWidth = 6,
@@ -19,9 +21,10 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
   label,
   className,
 }) => {
+  const val = value ?? progress ?? 0;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
-  const percent = Math.min(value / max, 1);
+  const percent = Math.min(val / max, 1);
   const offset = circumference * (1 - percent);
 
   return (
@@ -49,7 +52,7 @@ export const ProgressRing: React.FC<ProgressRingProps> = ({
         />
       </svg>
       <span className="text-xl font-heading font-semibold" style={{ color }}>
-        {Math.round(value)}
+        {Math.round(val)}%
       </span>
       {label && <span className="text-xs text-[var(--color-text-muted)]">{label}</span>}
     </div>

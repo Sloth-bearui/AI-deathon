@@ -2,7 +2,8 @@ import React from 'react';
 import { cn } from '@/utils/cn';
 
 interface TagProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  label?: string;
   active?: boolean;
   onClick?: () => void;
   className?: string;
@@ -10,6 +11,7 @@ interface TagProps {
 
 export const Tag: React.FC<TagProps> = ({
   children,
+  label,
   active = false,
   onClick,
   className,
@@ -26,7 +28,7 @@ export const Tag: React.FC<TagProps> = ({
       onClick={onClick}
       type="button"
     >
-      {children}
+      {children || label}
     </button>
   );
 };
